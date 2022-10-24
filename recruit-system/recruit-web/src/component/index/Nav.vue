@@ -382,10 +382,10 @@ $all-padding: 0;
 					}
 					ul {
 						overflow: auto;
-						height: 100%;
+						height: 97%;
 					}
 					ul::-webkit-scrollbar {
-						width: 5px;
+						width: 3px;
 						overflow-x: hidden;
 						overflow-y: hidden;
 					}
@@ -393,7 +393,7 @@ $all-padding: 0;
 						display: none;
 					}
 					ul::-webkit-scrollbar-thumb {
-						background: #b4dfbb;
+						background: #8b8b8b;
 					}
 
 					li {

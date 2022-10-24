@@ -55,6 +55,7 @@
 
 <script>
 import { Application } from '@/model/application'
+import Utils from '@/lin/util/util'
 import store from '@/store';
 export default{
 	data(){
@@ -135,7 +136,8 @@ export default{
 					// console.log("res:",data); 
 					// 捕获系统消息并跳出
 					if(data.type=="system"){
-						let info = await Application.getMsg(data.content.replaceAll(" ",""))
+						// 将匹配的内容结果传递给api,
+						let info = await Application.getMsg(Utils.filterStr(data.content))
 						this.chatInfo["-1"].msg.push({type:"sys",text:info.data,time:data.time});
 						this.moeScroll();
 						return;

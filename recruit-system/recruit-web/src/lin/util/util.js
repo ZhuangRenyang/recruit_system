@@ -1,4 +1,4 @@
-import { cloneDeep, throttle, debounce } from 'lodash'
+import { cloneDeep, throttle, debounce, join } from 'lodash'
 
 /* eslint-disable */
 const Utils = {}
@@ -221,6 +221,14 @@ Utils.checkTel = (tel)=>{
   let tel_patter = /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/
   return tel_patter.test(tel)
 }
+/**
+ * 将内容中的中文,数字, 字母提取出p来
+ */
+ Utils.filterStr = (str)=>{
+  let patter = /[A-Za-z0-9_\-\u4e00-\u9fa5]+/g
+  return str.match(patter).join("");
+}
+
 /**
  * 获取 地图api 的key
  */

@@ -42,3 +42,4 @@ nginx/
 *.rdb
 *.bat
 *.ini
+dist/

@@ -1,113 +1,121 @@
 <template>
 	<div class="container">
-	<div class="title">
-		<span>职位详细信息</span>
-		<span class="back" @click="back">
-		<i class="iconfont icon-fanhui"></i> 返回
-		</span>
-	</div>
-	<el-divider></el-divider>
-	<div class="wrap">
-		<el-row>
-			<el-col :xs="24">
-				<el-form :model="form" status-icon ref="form" label-width="100px" v-loading="loading" @submit.native.prevent>
-					<el-form-item label="职位名称" prop="title">
-						<span>{{ form.title }}</span>
-					</el-form-item>
-					<el-form-item label="职位发布者" prop="title" v-if="hr">
-						<span class="hr-name">{{ hr.name }}</span>
-						<img :src="hr.avatar" alt="" class="hr-img">
-						<span v-if="me">
-							<el-button type="success" plain icon="el-icon-chat-line-round" class="mini" @click="contactHR" v-if="!me.hr">联系ta</el-button>
-						</span>
-						<span v-else class="login-msg">
-							<el-alert title="登录后可与hr在线沟通噢" type="success"> </el-alert>
-						</span>
-					</el-form-item>
-					<!-- <el-form-item label="所属分类" prop="category_name">
-					<span>{{ form.category_name }}</span>
-					</el-form-item> -->
-					<el-form-item label="职位浏览量" prop="hits">
-						<span>{{ form.hits }}</span>
-					</el-form-item>
-					<el-form-item label="招聘人数" prop="quantity">
-						<span>{{ form.quantity }}</span>
-					</el-form-item>
-					<el-form-item label="薪资" prop="salary_up">
-						<span>${{ form.salary_down }}~${{ form.salary_up }}</span>
-					</el-form-item>
-					<el-form-item label="工作地点" prop="city" v-if="me && !me.hr">
-						<span>{{ form.city }}->({{city}})</span>&nbsp;
-						<el-button type="success" plain icon="el-icon-map-location" class="mini" @click="showMap" >查看地图</el-button>
-					</el-form-item>
-					<el-form-item label="学历要求" prop="edu_back" v-if="me && !me.hr">
-						<span>{{ form.edu_back }}</span>
-					</el-form-item>
-					<el-form-item label="职位要求" prop="requirement">
-						<span>{{ form.requirement }}</span>
-					</el-form-item>
-					<el-form-item label="公司名称" prop="company_name" v-if="me && !me.hr">
-						<span>{{ form.company_name }}</span>
-					</el-form-item>
-					<el-form-item label="公司简介" prop="company_desc">
-						<span>{{ form.company_desc }}</span>
-					</el-form-item>
-					<el-form-item class="submit" v-if="me && !me.hr">
-						<!--通过职位的状态属性state来控制通过按钮和不通过按钮是否显示-->
-						<el-button type="primary" @click="handlePass('form')" v-if="form.state == 0 && flag">通 过</el-button>
-						<el-button @click="handleFail('form')" v-if="form.state == 0 && flag">不通过</el-button>
-						<span  v-if="temp == 1">
-							<el-button type="primary" @click="handleDelivery('form')" v-if="isDelive('form')">投递简历</el-button>
-							<el-button type="primary" v-else>已投递</el-button>
-							<el-button @click="handleCollect('form')" class="el-icon-star-off">收藏职位</el-button>
-						</span>
-						<!-- <el-button type="primary" @click="handleDelivery('form')" v-if="temp == 1">投递简历</el-button> -->
-						<!-- <el-button @click="handleCollect('form')" v-if="temp == 1">收藏职位</el-button> -->  
-					</el-form-item>
-					
-					<el-form-item  v-else><span class="group-not">您在本次职位浏览中的权限是有限的(无法投递简历等..)</span></el-form-item>
-				</el-form>
-			</el-col>
-		</el-row>
-	</div>
+		<div class="title">
+			<span>职位详细信息</span>
+			<span class="back" @click="back">
+			<i class="iconfont icon-fanhui"></i> 返回
+			</span>
+		</div>
+		<el-divider></el-divider>
+		<div class="wrap">
+			<el-row>
+				<el-col :xs="24">
+					<el-form :model="form" status-icon ref="form" label-width="100px" v-loading="loading" @submit.native.prevent>
+						<el-form-item label="职位名称" prop="title">
+							<span>{{ form.title }}</span>
+						</el-form-item>
+						<el-form-item label="职位发布者" prop="title" v-if="hr">
+							<span class="hr-name">{{ hr.name }}</span>
+							<img :src="hr.avatar" alt="" class="hr-img">
+							<span v-if="me">
+								<el-button type="success" plain icon="el-icon-chat-line-round" class="mini" @click="contactHR" v-if="!me.hr">联系ta</el-button>
+							</span>
+							<span v-else class="login-msg">
+								<el-alert title="登录后可与hr在线沟通噢" type="success"> </el-alert>
+							</span>
+						</el-form-item>
+						<!-- <el-form-item label="所属分类" prop="category_name">
+						<span>{{ form.category_name }}</span>
+						</el-form-item> -->
+						<el-form-item label="职位浏览量" prop="hits">
+							<span>{{ form.hits }}</span>
+						</el-form-item>
+						<el-form-item label="招聘人数" prop="quantity">
+							<span>{{ form.quantity }}</span>
+						</el-form-item>
+						<el-form-item label="薪资" prop="salary_up">
+							<span>${{ form.salary_down }}~${{ form.salary_up }}</span>
+						</el-form-item>
+						<el-form-item label="工作地点" prop="city" v-if="me && !me.hr">
+							<span>{{ form.city }}->({{city}})</span>&nbsp;
+							<el-button type="success" plain icon="el-icon-map-location" class="mini" @click="showMap" >查看地图</el-button>
+						</el-form-item>
+						<el-form-item label="学历要求" prop="edu_back" v-if="me && !me.hr">
+							<span>{{ form.edu_back }}</span>
+						</el-form-item>
+						<el-form-item label="职位要求" prop="requirement">
+							<span>{{ form.requirement }}</span>
+						</el-form-item>
+						<el-form-item label="公司名称" prop="company_name" v-if="me && !me.hr">
+							<span>{{ form.company_name }}</span>
+						</el-form-item>
+						<el-form-item label="公司简介" prop="company_desc">
+							<span>{{ form.company_desc }}</span>
+						</el-form-item>
+						<el-form-item class="submit" v-if="me && !me.hr">
+							<!--通过职位的状态属性state来控制通过按钮和不通过按钮是否显示-->
+							<el-button type="primary" @click="handlePass('form')" v-if="form.state == 0 && flag">通 过</el-button>
+							<el-button @click="handleFail('form')" v-if="form.state == 0 && flag">不通过</el-button>
+							<span  v-if="temp == 1">
+								<el-button type="primary" @click="handleDelivery('form')" v-if="isDelive('form')">投递简历</el-button>
+								<el-button type="primary" v-else>已投递</el-button>
+								<el-button @click="handleCollect('form')" class="el-icon-star-off">收藏职位</el-button>
+							</span>
+							<!-- <el-button type="primary" @click="handleDelivery('form')" v-if="temp == 1">投递简历</el-button> -->
+							<!-- <el-button @click="handleCollect('form')" v-if="temp == 1">收藏职位</el-button> -->  
+						</el-form-item>
+						
+						<el-form-item  v-else><span class="group-not">您在本次职位浏览中的权限是有限的(无法投递简历等..)</span></el-form-item>
+					</el-form>
+				</el-col>
+			</el-row>
+		</div>
 
-	<el-dialog  :visible.sync="outMap" class="mapUI">
-		<!-- 地图 -->
-		<div>
-			<el-button type="danger"  class="el-icon-close" @click="outMap=false"></el-button>
-			<div id="container" style="width:600px;height:500px;"></div>
-		</div>
-		<div class="mapUI-describe">
-			<!-- <div>
-				<span>当前坐标:</span> 
-				<span>{{mapData.point}}</span>
-			</div> -->
+		<el-dialog  
+		:visible.sync="outMap"
+		append-to-body
+		class="mapUI">
+			<!-- 地图 -->
 			<div>
-				<span>省份:</span>
-				<span>{{mapData.city}}</span>
+				<div id="container" style="height:660px;"></div>
 			</div>
-			<div>
-				<span>目的地:</span>
-				<span>{{mapData.district}}</span>
-			</div>
-			<div>
-				<span>公司:</span>
-				<span>{{form.company_name}}</span>
-			</div>
-			<div>
-				<span>具体位置:</span>
-				<span>{{mapData.address}}</span>
-			</div>
-			<!-- <div>你可能想找:</div>
-			<div v-if="mapData.searchList" class="searchList">
-				<div v-for="(item,index) in mapData.searchList" :key="index" @click="form.company_name = item.title"
-				:title="item.address" >
-					<span @click="showMap">({{item.address.substring(0,2)}}){{item.title}}</span>
+			<div class="mapUI-describe">
+				<!-- <div>
+					<span>当前坐标:</span> 
+					<span>{{mapData.point}}</span>
+				</div> -->
+				<div>
+					<span>省份:</span>
+					<span>{{mapData.city}}</span>
 				</div>
-			</div> -->
-		</div>
-	</el-dialog>
-	
+				<div>
+					<span>目的地:</span>
+					<span>{{mapData.district}}</span>
+				</div>
+				<div>
+					<span>公司:</span>
+					<span>{{form.company_name}}</span>
+				</div>
+				<div>
+					<span>具体位置:</span>
+					<span>{{mapData.address}}</span>
+				</div>
+				<div>
+					<span>退出地图预览</span>
+					<span>
+						<el-button type="primary" round @click="outMap=false">退出</el-button>
+						</span>
+				</div>
+				<!-- <div>你可能想找:</div>
+				<div v-if="mapData.searchList" class="searchList">
+					<div v-for="(item,index) in mapData.searchList" :key="index" @click="form.company_name = item.title"
+					:title="item.address" >
+						<span @click="showMap">({{item.address.substring(0,2)}}){{item.title}}</span>
+					</div>
+				</div> -->
+			</div>
+		</el-dialog>
+		
 	</div>
 </template>
 
@@ -363,25 +371,25 @@ export default {
 
 <style lang="scss" scoped>
 .el-divider--horizontal {
-  margin: 0;
+  	margin: 0;
 }
-
+// 父窗口的类
 .container {
-  text-align: left;
+	text-align: left;
 
-  .title {
-    height: 59px;
-    line-height: 59px;
-    color: $parent-title-color;
-    font-size: 16px;
-    font-weight: 500;
-    text-indent: 40px;
+	.title {
+		height: 59px;
+		line-height: 59px;
+		color: $parent-title-color;
+		font-size: 16px;
+		font-weight: 500;
+		text-indent: 40px;
 
-    .back {
-      float: right;
-      margin-right: 40px;
-      cursor: pointer;
-    }
+		.back {
+			float: right;
+			margin-right: 40px;
+			cursor: pointer;
+		}
   }
 
   .wrap {
@@ -404,15 +412,29 @@ export default {
     float: left;
   }
 }
+
+@media screen and (max-width :1000px){
+	.mapUI-describe {
+		width: 250px;
+	}
+}
 .mapUI {
 	overflow: hidden;
 	z-index: 9999;
 	.mapUI-describe {
+		background: #0000005e;
+		color: white !important;
+		padding: 5px;
 		position: absolute;
-		top: 50px;
-		right: 30px;
-		font-size: 18px;
-		width: 280px;
+		top: 0;
+		right: 0;
+		border-radius: 5px;
+		border-top-left-radius: 0;
+		border-bottom-right-radius: 0;
+		transition: rgba,width .5s;
+		&:hover {
+			background: rgba(0, 0, 0, 0.7);
+		}
 
 		>div {
 			margin-bottom: 20px;
@@ -426,7 +448,7 @@ export default {
 			>span:nth-child(2){
 				width: 70%;
 				text-align: right;
-				color: black;
+				// color: black;
 			}
 		}
 		.searchList {
@@ -453,6 +475,9 @@ export default {
 		margin-top: 10vh !important;
 		width: 80% !important;
 		font-size: 25px;
+	}
+	::v-deep .el-dialog__header {
+		display: none;
 	}
 }
 

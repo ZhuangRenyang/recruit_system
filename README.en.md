@@ -12,20 +12,24 @@ Use Websocket to realize front-end real-time communication
 
 #### Installation
 
-1.  web: 
+1.  web(recruit-web): 
         npm install
         npm run eval
-2.  server:
+2.  server(recruit-sys):
         import modules
         Start database environment: database version 8.0+
         start Redis server
 
 ### `update logs`:
 
-#### 2022.10.5 / v0.1.8
+#### 2022.10.24 / v0.1.8
 > The new homepage displays epidemic data. It is convenient for applicants to go to the interview when they are looking for jobs
+>
+> Delete invalid submissions files
+>
+> Optimize the UI layout of the position map and fix the bug of overlapping mask layers when viewing the map
 
-#### 2022.10.5 / v0.1.7
+#### 2022.10.17 / v0.1.7
 >Add post routing guards to optimize the implementation of page title changes
 >
 >Connect the robot in the chat room to the API interface of Xiaoai to realize automatic reply
