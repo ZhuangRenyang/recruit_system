@@ -1,0 +1,16 @@
+{
+  "id": "3628012",
+  "name": "no name",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "6119296",
+      "name": "学历",
+      "font_class": "edu-line",
+      "unicode": "e63a",
+      "unicode_decimal": 58938
+    }
+  ]
+}

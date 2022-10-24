@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.recruit.mapper.CompanyMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.recruit.model.CompanyDO">
+        <id column="id" property="id" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="delete_time" property="deleteTime" />
+        <result column="name" property="name" />
+        <result column="foreign_name" property="foreignName" />
+        <result column="city" property="city" />
+        <result column="logo" property="logo" />
+        <result column="mission" property="mission" />
+        <result column="description" property="description" />
+        <result column="state" property="state" />
+    </resultMap>
+
+    <update id="updateState">
+        update company set state = #{state} where id = #{id}
+    </update>
+
+    <select id="findHotCompany" resultMap="BaseResultMap">
+        SELECT * FROM `company`
+        where delete_time is null
+        and state = 1
+    </select>
+</mapper>

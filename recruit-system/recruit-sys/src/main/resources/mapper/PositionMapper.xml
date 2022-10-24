@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.recruit.mapper.PositionMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.recruit.model.PositionDO">
+        <id column="id" property="id" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="delete_time" property="deleteTime" />
+        <result column="title" property="title" />
+        <result column="requirement" property="requirement" />
+        <result column="quantity" property="quantity" />
+        <result column="city" property="city" />
+        <result column="salary_up" property="salaryUp" />
+        <result column="salary_down" property="salaryDown" />
+        <result column="release_date" property="releaseDate" />
+        <result column="state" property="state" />
+        <result column="hits" property="hits" />
+        <result column="category_id" property="categoryId" />
+        <result column="hr_id" property="hrId" />
+        <result column="company_id" property="companyId" />
+    </resultMap>
+
+    <resultMap id="PositionResultMap" type="com.recruit.model.result.PositionResultDO">
+        <id column="id" property="id" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="delete_time" property="deleteTime" />
+        <result column="title" property="title" />
+        <result column="requirement" property="requirement" />
+        <result column="quantity" property="quantity" />
+        <result column="city" property="city" />
+        <result column="salary_up" property="salaryUp" />
+        <result column="salary_down" property="salaryDown" />
+        <result column="release_date" property="releaseDate" />
+        <result column="state" property="state" />
+        <result column="hits" property="hits" />
+        <result column="category_id" property="categoryId" />
+        <result column="hr_id" property="hrId" />
+        <result column="company_id" property="companyId" />
+        <result column="category_name" property="categoryName" />
+        <result column="company_name" property="companyName" />
+        <result column="company_desc" property="companyDesc" />
+        <result column="logo" property="logo" />
+    </resultMap>
+
+    <select id="getById" resultMap="PositionResultMap">
+        SELECT p.*,c.id as company_id,c.name as company_name,c.description as company_desc,ca.id as category_id,ca.name as category_name
+        FROM position p,company c,category ca
+        where p.id = #{id}
+        and p.company_id = c.id
+        and p.category_id = ca.id
+        and p.delete_time is null
+    </select>
+
+    <select id="getPage" resultMap="PositionResultMap">
+        SELECT p.*,c.id as company_id,c.name as company_name,c.description as company_desc,ca.id as category_id,ca.name as category_name
+        FROM position p
+        left join company c on p.company_id = c.id
+        left join category ca on p.category_id = ca.id
+        where p.state = #{state}
+          and p.delete_time is null
+    </select>
+
+    <select id="getPageByKeyword" resultMap="PositionResultMap">
+        SELECT p.*,c.id as company_id,c.name as company_name,c.description as company_desc,c.logo as logo,ca.id as category_id,ca.name as category_name
+        FROM position p
+                 left join company c on p.company_id = c.id
+                 left join category ca on p.category_id = ca.id
+        where p.state = 1
+          and p.delete_time is null
+          <if test="#{keyword}!=null">
+          and p.title like  concat('%',#{keyword},'%')
+          </if>
+    </select>
+
+    <select id="sortByHits" resultMap="PositionResultMap">
+        SELECT p.*,c.name as company_name,c.logo
+        FROM position p,company c
+        where p.company_id = c.id
+        and p.delete_time is null
+        and p.state = 1
+        ORDER BY hits desc LIMIT 0,8
+    </select>
+
+    <update id="updateState">
+        update position set state = #{state} where id = #{id}
+    </update>
+
+    <update id="updateHits">
+        update position set hits = hits + 1 where id = #{id}
+    </update>
+</mapper>

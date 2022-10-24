@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.recruit.mapper.FavorMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.recruit.model.FavorDO">
+        <id column="id" property="id" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="delete_time" property="deleteTime" />
+        <result column="user_id" property="userId" />
+        <result column="position_id" property="positionId" />
+    </resultMap>
+
+    <select id="getByUserId" resultType="com.recruit.model.PositionDO">
+        SELECT p.id,p.title,p.quantity,p.city,p.salary_up,p.salary_down
+        FROM position p,favor f
+        where f.position_id = p.id
+        and f.user_id = #{userId}
+        and f.delete_time IS NULL
+    </select>
+
+    <select id="getByUserIdAndFavorId" resultMap="BaseResultMap">
+        SELECT *
+        FROM favor f
+        where f.position_id = #{positionId}
+        and f.user_id = #{userId}
+        and f.delete_time IS NULL
+    </select>
+</mapper>

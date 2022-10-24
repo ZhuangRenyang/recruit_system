@@ -1,0 +1,44 @@
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**
+!**/src/test/**
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+.jar
+test/
+recruit-system\recruit-sys\.gitignore
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/ 
+/dist/
+/tests/
+/test/
+/nbdist/
+/.nb-gradle/
+build/
+
+### VS Code ###
+.vscode/
+tests/
+node_modules/
+mysql8/
+Redis*
+nginx/
+*.rdb
+*.bat
+*.ini

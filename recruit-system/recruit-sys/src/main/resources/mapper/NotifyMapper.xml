@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.recruit.mapper.NotifyMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.recruit.model.NotifyDO">
+        <id column="id" property="id" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="delete_time" property="deleteTime" />
+        <result column="content" property="content" />
+        <result column="user_name" property="userName" />
+        <result column="is_read" property="isRead" />
+        <result column="time" property="time" />
+    </resultMap>
+
+    <update id="update">
+        update notify set is_read = "true" where user_name = #{userName} and delete_time is null
+    </update>
+</mapper>
