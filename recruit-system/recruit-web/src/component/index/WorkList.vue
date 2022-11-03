@@ -29,7 +29,7 @@
 							<span style="float: left;" v-else>{{work.salary_down}}元</span>
 							<span style="float: left;">~</span>
 							<span style="float: left;" v-if="work.salary_up>1000">{{work.salary_up/1000}}k</span>
-							<span style="float: left;" v-else>{{work.salary_up}}元</span>
+							<span style="float: left;" v-else>{{work.salary_up}}元/天</span>
 						</div>
 					</div>
 					<!-- 公司logo / 名字 -->
@@ -56,12 +56,10 @@
 			return{
 				showDetail: false, // 是否显示职位详情页
 				detailPositionID: 0, // 职位id
+				workList:[]
 			}
 		},
 		props:['workSort'],
-		mounted(){
-			// console.log(this.workSort);
-		},
 		methods:{
 			handleDetail(val) {
 				this.showDetail = true;
@@ -69,7 +67,16 @@
 			},
 			detailClose() {
 				this.showDetail = false;
-			}
+			},
+			getShufflePos(array){
+				let res = [],random;
+				while(array.length>0){
+					random = Math.floor(Math.random() * array.length);
+					res.push(array[random]);
+					array.splice(random,1);
+				}
+				return res;
+			},
 		},
 		components:{
 			PositionDetail,

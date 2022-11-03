@@ -156,36 +156,47 @@ $nx-width: 76.25rem;
 		position: relative;
 		user-select: none;
 		cursor: pointer;
-		width: 35px;
+		width: 60px;
 		border: 1px solid #0000002b;
 		border-radius: 5px;
-		height: 40px;
+		height: 60px;
 		padding: 0 !important;
-		background: aliceblue
+		background: aliceblue;
 
-		svg {
-			width: 100%;
-			height: 100%;
+		.item {
+			
+			width: 100% !important;
+			height: 100% !important;
 			position: absolute;
-			top: 0;
-			left: 0;
+			top: 0 !important;
+			left: 0 !important;
+			background-color: white !important;
 		}
 
 		.content {
 			opacity: 0;
-			transition: all .5s;
+			transition: opacity .5s;
 			position: absolute;
-			width: 100px;
-			height: 100px;
-			left: -110px;
+			width: 150px;
+			height: 150px;
+			left: -160px;
 			top: -20px;
-			border: 1px solid rgba(0, 0, 0, 0.384);
+			border: 1px solid rgba(0, 0, 0, 0.38);
 			margin-bottom: 10px;
 
 			p {
 				position: absolute;
 				top: -20px;
 				color: black;
+				background: white;
+				width: 100%;
+				height: 20px;
+				z-index: -1;
+				line-height: 20px;
+				padding: 2px;
+				font-size: 13px;
+				font-weight: bold;
+				border-bottom: 1px solid black;
 			}
 		}
 		.item:hover + .content{

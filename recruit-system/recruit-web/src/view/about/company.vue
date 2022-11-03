@@ -1,7 +1,7 @@
 <template>
   <div class="container" v-if="!showDetail">
     <div class="header">
-      <div class="title">校企直聘网系统——公司大全</div>
+      <div class="title">校企招聘网系统——公司大全</div>
     </div>
     <!-- 搜索框 -->
     <div class="box">

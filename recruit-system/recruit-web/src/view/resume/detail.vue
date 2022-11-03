@@ -6,9 +6,9 @@
         <!-- 基本信息 -->
         <div class="info">
           <div class="info_left_img">
-            <!-- <el-avatar :size="120"></el-avatar> -->
+            <el-avatar :size="120"><img :src="avatar ? avatar : defaultImg" size="120" class="aa"></el-avatar>
             <!-- <el-avatar :size="120" :src="avatar"></el-avatar> -->
-            <img :src="avatar" size="120" class="aa">
+            
           </div>
           <div class="info-right">
             <div class="info_name">
@@ -21,29 +21,29 @@
                   <el-col :span="8">
                     <el-form-item label-width="0">
                       <i class="el-icon-s-custom"></i>
-                      {{ sex }}|{{ age }}
+                      {{ sex }} | {{ age }}
                     </el-form-item>
                   </el-col>
                   <el-col :span="8">
-                    <el-form-item label-width="0">
+                    <el-form-item label-width="0" title="英语等级">
                       <i class="el-icon-star-off"></i>
                       {{ english }}
                     </el-form-item>
                   </el-col>
                   <el-col :span="8">
-                    <el-form-item label-width="0">
+                    <el-form-item label-width="0" title="联系电话">
                       <i class="el-icon-phone"></i>
                       {{ tel }}
                     </el-form-item>
                   </el-col>
-                  <el-col :span="8">
-                    <el-form-item label-width="0">
+                  <el-col :span="9">
+                    <el-form-item label-width="0" title="邮箱">
                       <i class="el-icon-message"></i>
                       {{ email }}
                     </el-form-item>
                   </el-col>
                   <el-col :span="8">
-                    <el-form-item label-width="0">
+                    <el-form-item label-width="0"  title="居住地">
                       <i class="el-icon-s-home"></i>
                       {{ home }}
                     </el-form-item>
@@ -228,7 +228,8 @@ export default {
         // 个人评价显示模式，ol为有序列表（前面是数字），ul为无序列表（前面是圆点），p为段落
         wordMode: 'p',
         word: ''
-      }
+      },
+      defaultImg: require("@/assets/image/user/user.png")
     };
   },
   async mounted() {
@@ -237,7 +238,7 @@ export default {
       const res = await Resume.getById(this.id)
       // console.log(res)
       this.ability.descriptions = res.ability,
-        this.avatar = res.avatar,
+        this.avatar = res.avatar ? res.avatar : this.defaultImg,
         this.educations = res.educations,
         this.experiences = res.experiences,
         this.projects = res.projects,
@@ -246,7 +247,7 @@ export default {
         this.name = res.name,
         this.sex = res.sex === 0 ? "男" : "女",
         this.evaluate.word = res.personal_summary,
-        this.tel = res.tel,
+        this.tel = res.tel.substring(0, 3)+"****"+res.tel.substr(res.tel.length-4),
         this.age = res.age,
         this.email = res.email,
         this.home = res.home

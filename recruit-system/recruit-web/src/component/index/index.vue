@@ -18,7 +18,7 @@
   </el-backtop> -->
 	<!-- 注册框 -->
 	<div>
-		<el-drawer title="校企直聘网" :visible.sync="showregister" :direction="direction" :before-close="handleClose1">
+		<el-drawer title="校企招聘网" :visible.sync="showregister" :direction="direction" :before-close="handleClose1">
 			<el-card class="box-card" style="margin-top: 10%;">
 				<div slot="header" style="margin-top: 5%;">
 					<H1 style="margin-bottom: 5%;">注册账号</H1>
@@ -65,7 +65,7 @@
 
 	<!-- 登录框 -->
 	<div>
-		<el-drawer title="校企直聘网" :visible.sync="showlogin" :direction="direction" :before-close="handleClose">
+		<el-drawer title="校企招聘网" :visible.sync="showlogin" :direction="direction" :before-close="handleClose">
 			<el-card class="box-card" style="margin-top: 20%;">
 				<div slot="header" style="margin-top: 20%;">
 					<H1 style="margin-bottom: 5%;">欢迎登录</H1>
@@ -96,7 +96,7 @@
 
 	<!-- 忘记密码 -->
 	<div>
-		<el-drawer title="校企直聘网" :visible.sync="showfind" :direction="direction" :before-close="handleClose2">
+		<el-drawer title="校企招聘网" :visible.sync="showfind" :direction="direction" :before-close="handleClose2">
 			<el-card class="box-card" style="margin-top: 20%;">
 				<div slot="header" style="margin-top: 8%;">
 					<H1 style="margin-bottom: 5%;">找回密码</H1>
@@ -140,7 +140,7 @@
 				<!-- <ul class="left">
 					<i class="iconfont icon-mobilephone_fill"></i>
 					<li>
-						<span class="lgstyle">校企直聘网</span>&nbsp;&nbsp;
+						<span class="lgstyle">校企招聘网</span>&nbsp;&nbsp;
 					</li>
 				</ul> -->
 				<ul class="right2">

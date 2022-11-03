@@ -45,7 +45,7 @@ public class MailServiceImpl  implements MailService {
     public CreatedVO SendCodeMail(String recipient) {
         try{
             String code = String.valueOf(Math.random()).substring(2,8);
-            SendMailSync(recipient,"验证码","<p>【校企直聘网】验证码: (<b>" +
+            SendMailSync(recipient,"验证码","<p>【校企招聘网】验证码: (<b>" +
                     code+"</b>)，用于邮箱验证码登录，5分钟内有效。验证码提供给他人可能导致帐号被盗，请勿泄露，谨防被骗。</p>");
 
             redisService.setMailCode(code);

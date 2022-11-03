@@ -71,7 +71,7 @@ router.beforeEach((to, from, next) => {
 
 // 使用后置路由守卫监听页面跳转后,修改页面标题
 router.afterEach((to,form)=>{
-  document.title = to.meta.title
+  document.title = to.meta.title || "校企招聘网"
 })
 
 export default router

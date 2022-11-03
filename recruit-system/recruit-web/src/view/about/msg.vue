@@ -3,7 +3,10 @@
 	<div class="ws-msg-form">
 		<div class="msg-content">
 			<p class="msg-title"  v-if="selectInfo.id==0">在线聊天</p>
-			<p class="msg-title"  v-else>正在与 <b>{{selectInfo.name}}</b> 交流</p>
+			<p class="msg-title"  v-else>
+				正在与 <b>{{selectInfo.name}}</b> 交流
+				<span v-if="selectInfo.online">(对方在线)</span>
+			</p>
 			<div class="left">
 				<div class="item" v-for="(item,index) in chatInfo" :key="index" @click="clickChat(item)"
 						:class="{'select-style':item.id==selectInfo.id}">
@@ -16,6 +19,7 @@
 					</div>
 					<div class="msg" v-else>{{item.header}}</div>
 					<span :class="{'newTip':item.isRead==0}"></span>
+					<span :class="{'online':item.online}"></span>
 					<span class="chat-time">{{item.msg[item.msg.length-1].time.split(" ")[1]}}</span>
 				</div>
 			</div>
@@ -73,6 +77,13 @@ export default{
 			wsCtl:{
 				allow:true,
 				timer:null
+			},
+			online:[],
+			hart:{
+				timeout:5,  // 每隔一段时间监听一次在线客户端 /s
+				type:"ping",
+				timeObj:null,
+				check:{} // 当客户端离线之后,第一次离线的加入对象内, 如果第二次还是离线,那么将目标用户标志为离线,避免重复闪烁
 			}
 		}
 	},
@@ -129,8 +140,10 @@ export default{
 		},
 		recvMsg(){
 			if (this.$ws.ws){
-				let data = {type:"token",_id:this.me.id}
-				this.$ws.ws.send(JSON.stringify(data))
+				// 机器人默认在线,除非用户断开了与后台的连接
+				this.chatInfo["-1"]["online"] = true
+				let msgInfo = {type:"token",_id:this.me.id}
+				this.$ws.ws.send(JSON.stringify(msgInfo))
 				this.$ws.ws.onmessage = async (res)=>{
 					let data = JSON.parse(res.data)
 					// console.log("res:",data); 
@@ -142,7 +155,7 @@ export default{
 						this.moeScroll();
 						return;
 					}
-					let readList = data.readList.replaceAll("&","").split("^").filter(item =>item!="")
+					
 					if(data.type=="token"){
 						const info = {};
 						for(let i in data.content){
@@ -170,38 +183,51 @@ export default{
 							}
 							this.chatInfo[keyID].isRead = data.readList.indexOf("^"+keyID+"&") != -1 ? 0 : 1;
 						}
+						if(data.ContactID !=-1){
+							this.selectInfo = this.chatInfo[data.ContactID];
+							this.selectInfo.isRead = 1;
+						}else{
+							let readList = data.readList.replaceAll("&","").split("^").filter(item =>item!="")
+							if(readList.length){
+								this.selectInfo = this.chatInfo[readList[0]];
+								if(this.selectInfo && !this.selectInfo.isRead){
+									this.$ws.ws.send(JSON.stringify({type:"state",readID:this.selectInfo.id}))
+									this.selectInfo.isRead = 1;
+								}
+							}
+						}
+						// 心跳包
+						this.hartCheck(this.chatInfo)
+						this.hart.timeObj = setInterval(() => {
+							this.hartCheck(this.chatInfo)
+						}, this.hart.timeout*1000);
 					}
 					else if (data.type=="alone"){
 						if(this.chatInfo[data.self.id]){
-							this.chatInfo[data.self.id].msg.push({"type":"target","text":data.content,time:data.content[i].timestamp});
+							this.chatInfo[data.self.id].msg.push({"type":"target","text":data.content,time:data.time});
 							this.chatInfo[data.self.id].isRead = 0;
 							
 						}else{
 							// 解决无法实时刷新dom
 							this.$set(this.chatInfo,data.self.id,{"id":data.self.id,"name":data.self.nickName,"type":"user","time":data.time,
-								"icon":data.self.icon,"msg":[{type:"target",text:data.content ,time:data.content[i].timestamp}],"head":null,"isRead":0});
+								"icon":data.self.icon,"msg":[{type:"target",text:data.content ,time:data.time}],"head":null,"isRead":0});
+						}
+						
+					}else if  (data.type ==="ping"){
+						this.hart.check = {}
+						if (data.content.length){
+							let info = data.content.split("|")
+							for(let i =0;i< info.length-1;i++){
+								this.hart.check[info[i]] = true
+								this.$set(this.chatInfo[info[i]],"online",true)
+							}
 						}
 						
 					}
 
-					if(data.ContactID !=-1){
-						this.selectInfo = this.chatInfo[data.ContactID];
-						this.selectInfo.isRead = 1;
-					}else{
-						if(readList.length){
-							this.selectInfo = this.chatInfo[readList[0]];
-							if(this.selectInfo && !this.selectInfo.isRead){
-								this.$ws.ws.send(JSON.stringify({type:"state",readID:this.selectInfo.id}))
-								this.selectInfo.isRead = 1;
-							}
-						}
-					}
 					this.moeScroll();
-					// console.log("this.chatInfo",this.chatInfo);
-					// for(let item in this.chatInfo){
-					// 	this.chatInfo[item].isRead = 
-					// }
 				}
+
 			}
 		},
 		moeScroll(time=200){
@@ -240,10 +266,34 @@ export default{
 		// 封装信息体
 		packMsg(id,name,type,time,icon,msg,header=null,isRead=0){
 			return {id:id,name:name,type:type,time:time,icon:icon ==null?this.defaultImg:icon,msg:msg,header:header,isRead:isRead};
+		},
+		// 心跳包检测
+		hartCheck(friends){
+			// 如果与服务器的连接断开了
+			if(this.$ws.ws.readyState === this.$ws.ws.CLOSED){
+				this.$message.warning("聊天服务器已断开")
+				clearInterval(this.hart.timeObj);
+				// 将所有用户设为离线
+				for(let i in this.chatInfo){
+					this.chatInfo[i]["online"] = false
+				}
+				return
+			}
+			let friends_list = ""
+			for (const iterator in friends) {
+				if (parseInt(iterator) >0){
+					if(!this.hart.check[iterator]){
+						this.$set(friends[iterator],"online",false)
+					}
+					friends_list += iterator+"|"
+				}
+			}
+			this.$ws.ws.send(JSON.stringify({type:this.hart.type,friends_list}))
 		}
 	},
 	async mounted() {
 		// this.$message.closeAll();
+						this.hartCheck(this.chatInfo)
 		this.me = store.getters.user;
 		this.token_msg = {
 			id:this.me.id,
@@ -281,13 +331,14 @@ export default{
 					</div>\
 				</div>\
 			",time:new Date().toLocaleString()}],"登录操作通知",1)
-
+		
 		this.selectInfo = this.chatInfo["-1"];
 		if(this.$ws.ws.readyState!=1)return;
 	 	await this.recvMsg();
 	},
 	beforeDestroy() {
 		clearTimeout(this.wsCtl.timer);
+		clearInterval(this.hart.timeObj);
 	},
 }
 </script>
@@ -376,7 +427,8 @@ export default{
 				white-space: nowrap;
 				max-width: 130px;
 			}
-			.newTip {
+			.newTip,
+			.online {
 				display: inline-block;
 				width:  10px;
 				height: 10px;
@@ -385,6 +437,11 @@ export default{
 				position: absolute;
 				left: 10px;
 				top: 20px;
+			}
+			.online {
+				background-color: greenyellow;
+				top: 50px;
+				left: 20px;
 			}
 			.chat-time {
 				display: inline-block;

@@ -2,14 +2,14 @@
   <div>
     <!-- <div class="team-name hidden-sm-and-down"><img src="@/assets/image/login/team-name.png" alt="logo" /></div> -->
     <el-drawer
-      title="校企直聘网"
+      title="校企招聘网"
       :visible.sync="show"
       :direction="direction"
       :before-close="handleClose"
     >
       <div>
         <!-- <div class="title" style="margin-left: 350px">
-        <h1 title="Lin">校企直聘网</h1>
+        <h1 title="Lin">校企招聘网</h1>
         </div>-->
         <form autocomplete="off" @submit.prevent="throttleLogin()">
           <div class="form-item nickname">

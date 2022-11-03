@@ -7,6 +7,12 @@
     <el-divider></el-divider>
     <div class="wrap">
       <el-tabs :tab-position="tabPosition" style="height: auto;">
+        
+        <el-tab-pane label="简历预览">
+          <div>
+            <Detail :id="resumeId" v-if="isRouterAlive"></Detail>
+          </div>
+        </el-tab-pane>
         <!-- 基本信息模块 -->
         <el-tab-pane label="基本信息">
           <el-row>
@@ -219,11 +225,11 @@
             <el-button @click="addProject()" style="font:center" round>新增项目经历</el-button>
           </div>
         </el-tab-pane>
-        <el-tab-pane label="简历预览">
+        <!-- <el-tab-pane label="简历预览">
           <div>
             <Detail :id="resumeId" v-if="isRouterAlive"></Detail>
           </div>
-        </el-tab-pane>
+        </el-tab-pane> -->
       </el-tabs>
     </div>
   </div>
@@ -323,7 +329,7 @@ export default {
   },
   methods: {
     reload() {
-      this.isRouterAlive = false
+      this.isRouterAlive = true
       this.$nextTick(() => (this.isRouterAlive = true))
     },
     // 教育经历操作

@@ -156,16 +156,18 @@ export default {
 			const page = this.currentPage - 1;
 			const count = this.pageCount;
 			const positions = await Position.getByKeyword(page, count, searchKeyword);
-			// 获取职位数据
-			this.tableData =  positions.items
+			// 获取职位数据,(顺序随机)
+			// 存储
+			this.tableData =  this.getShufflePos(positions.items)
 			this.totalNums = positions.total;
 			// 清空检索
 			this.searchKeyword = '';
 			if(this.totalNums==0){
 				this.$message.warning("当前职位没有新的招聘.");
+				this.searchPositionList();
 				return;
 			}
-			this.$message.success("查询职位成功")
+			// this.$message.success("查询职位成功")
 		},
 		// 清空检索
 		async backInit() {
@@ -332,11 +334,16 @@ export default {
 				margin-top: 20px;
 				color: #666;
 				font-size: 18px;
+				div {
+					height: 25px;
+				}
 
 				.s_hot_like {
-					color: #3CBEF9;
 					margin-right: 16px;
 					cursor: pointer;
+					display: inline-block;
+					height: 100%;
+					display: inline-block;
 
 					>span {
 						margin: 0 5px;
@@ -344,20 +351,36 @@ export default {
 						font-family: cursive;
 						position: relative;
 						overflow: hidden;
+						transition: all .5s !important;
+						padding: 2px;
+						height: 100%;
+						line-height: 25px;
+    					transform: translateY(5px);
+						// text-shadow: 0px 1px 3px #000000 !important;
+						color: #6c6c6c !important;
+						&:hover {
+    						transform: translateY(0px);
+
+							.hot_before {
+								background: #3636361f;
+								left: 0% !important;
+							}
+						}
 					}
 					.hot_before {
 						position: absolute;
-						left: -100px;
+						left: -100% !important;
 						width: 100%;
 						height: 80%;
 						display: inline-block;
-						transition: all .5s;
+						transition: all .8s;
 						padding-bottom: 2px;
-					}
-					>span:hover > .hot_before{
-						left: 0px;
+						border-top: 1px solid #3affad;
 						border-bottom: 1px solid #3CBEF9;
+						color: #3CBEF9 !important;
 					}
+					// >span:hover  .hot_before{
+					// }
 				}
 			}
 
@@ -566,4 +589,5 @@ $nx-width:76rem;
 		}
 	}
 }
+
 </style>

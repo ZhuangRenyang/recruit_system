@@ -43,3 +43,4 @@ nginx/
 *.bat
 *.ini
 dist/
+recruit-system/recruit-sys/assets/

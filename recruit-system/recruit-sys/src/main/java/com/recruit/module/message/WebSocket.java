@@ -41,10 +41,6 @@ public class WebSocket {
 
     Integer  ContactID = -1;
 
-//    private static RedisService redisService;
-//    @Autowired
-//    public void setRedisService(RedisService redisService){WebSocket.redisService = redisService;}
-
     private static ChatService chatService;
     @Resource
     public void setChatService(ChatService chatService){WebSocket.chatService = chatService;}
@@ -74,7 +70,7 @@ public class WebSocket {
     public void onClose() {
         try {
             webSockets.remove(this);
-            sessionPool.remove(this);
+            sessionPool.remove(String.valueOf(this.uID));
             log.info("【websocket消息】用户"+this.uID+"连接断开，剩余在线数为:" + webSockets.size());
         } catch (Exception e) {
             log.error("【websocket消息】用户"+this.uID+"连接断开，剩余在线数为:" + webSockets.size());
@@ -92,73 +88,41 @@ public class WebSocket {
         // 解析聊天数据
         JSONObject content = JSONObject.parseObject(message);
 //        System.out.println("内容:"+content);
-        // 发起沟通认证请求时
-        if(content.getString("type").equalsIgnoreCase("handToken")){
-            String recvId = content.getJSONObject("info").getString("recvId");
-            this.ContactID = Integer.valueOf(recvId);
-            // 如果目标已经被当前用户认证, 那么跳出
-            if(chatService.getChatExistById(uID,this.ContactID)) return;
-            ChatDO chat = new ChatDO();
-            chat.setSendId(String.valueOf(uID));
-            chat.setRecvId(recvId);
-            chat.setTimestamp(content.getJSONObject("info").getString("time"));
-            chat.setSelf(content.getJSONObject("info").getString("self"));
-            chat.setTarget(content.getJSONObject("info").getString("target"));
-            chat.setContent("您好，我非常喜欢贵公司，有信心能够胜任这个职位，期待您的回复。");
-            chatService.insertChat(chat);
-            // 修改消息已读状态
-            chatService.changeChatState(String.valueOf(uID),recvId,false);
-            // 如果对方hr在线,那么将本次的通知推送给对方
-            if(sessionPool.get(recvId)!=null){
-                content.put("self",content.getJSONObject("info").getString("self"));
-                content.put("target",content.getJSONObject("info").getString("target"));
-                content.put("time",content.getJSONObject("info").getString("time"));
-                content.put("type","alone");
-                content.put("content","您收到一位求职者的新消息");
-                content.put("recvID",recvId);
-                sendOneMessage(content);
-            }
-
-        // 如果传入的类型是认证头 ,那么将当前用户所有的聊天对象返回给目标
-        }else if(content.getString("type").equalsIgnoreCase("token")){
-            content.put("header","Eval认证");
-            content.put("target",uID);
-            content.put("_id",uID);
-            content.put("ContactID",this.ContactID);
-            // 认证时,将当前用户所有的聊天数据返回至前端
-            content.put("content",chatService.getChatById(uID));
-            content.put("recvID",uID);
-            content.put("readList",chatService.getChatState(String.valueOf(uID)));
-            sendOneMessage(content);
-        }else if(content.getString("type").equalsIgnoreCase("group")){
-            sendAllMessage(content.getString("content"));
-        }else if(content.getString("type").equalsIgnoreCase("alone")){
-            // 将信息反馈到用户,-1是机器人,不用修改数据库
-            if(content.getJSONObject("target").getInteger("id")==-1){
+        switch (content.getString("type")){
+            case "handToken":
+                // 发起沟通认证请求时
+                ws_handler_request(content);
+                break;
+            case "token":
+                // 如果传入的类型是认证头 ,那么将当前用户所有的聊天对象返回给目标
+                ws_handler_token(content);
+                break;
+            case "group":
+                // 广播消息
+                sendAllMessage(content.getString("content"));
+                break;
+            case "alone":
+                // 私聊消息
+                ws_message_alone(content);
+                break;
+            case "state":
+                //  修改消息状态
+                chatService.changeChatState(content.getString("readID"),String.valueOf(uID),true);
+                break;
+            case "tips":
+                // 登录时,告诉客户端是否有新消息
+                content.put("isTip",chatService.getChatState(String.valueOf(uID)).isEmpty() ? false : true);
                 content.put("recvID",uID);
-                content.put("type","system");
-                content.put("content",content.getString("content"));
-            }else{
-                ChatDO chat = new ChatDO();
-                chat.setContent(content.getString("content"));
-                chat.setSendId(String.valueOf(uID));
-                chat.setRecvId(content.getString("recvID"));
-                chat.setSelf(content.getString("self"));
-                chat.setTarget(content.getString("target"));
-                chat.setTimestamp(content.getString("time"));
-                chatService.insertChat(chat);
-                // 修改消息已读状态
-                chatService.changeChatState(String.valueOf(uID),content.getString("recvID"),false);
-            }
-            sendOneMessage(content);
-        }else if(content.getString("type").equalsIgnoreCase("state")){
-            chatService.changeChatState(content.getString("readID"),String.valueOf(uID),true);
-        }else if(content.getString("type").equalsIgnoreCase("tips")){
-            // 登录时,告诉客户端是否有新消息
-            content.put("isTip",chatService.getChatState(String.valueOf(uID)).isEmpty() ? false : true);
-            content.put("recvID",uID);
-            content.put("type","tips");
-            sendOneMessage(content);
+                content.put("type","tips");
+                sendOneMessage(content);
+                break;
+
+            case "ping":
+                content.put("type","ping");
+                content.put("recvID",uID);
+                // 客户端每隔一段时间发起请求,获取当前客户端的聊天列表在线情况
+                content.put("content",ws_heartbeat(content));
+                sendOneMessage(content);
         }
     }
 
@@ -269,5 +233,80 @@ public class WebSocket {
         data.put("head",head);
         data.put("isRead",isRead);
         return data;
+    }
+
+
+    // 处理认证请求
+    public void ws_handler_request(JSONObject content){
+        String recvId = content.getJSONObject("info").getString("recvId");
+        this.ContactID = Integer.valueOf(recvId);
+        // 如果目标已经被当前用户认证, 那么跳出
+        if(chatService.getChatExistById(uID,this.ContactID)) return;
+        ChatDO chat = new ChatDO();
+        chat.setSendId(String.valueOf(uID));
+        chat.setRecvId(recvId);
+        chat.setTimestamp(content.getJSONObject("info").getString("time"));
+        chat.setSelf(content.getJSONObject("info").getString("self"));
+        chat.setTarget(content.getJSONObject("info").getString("target"));
+        chat.setContent("您好，我非常喜欢贵公司，有信心能够胜任这个职位，期待您的回复。");
+        chatService.insertChat(chat);
+        // 修改消息已读状态
+        chatService.changeChatState(String.valueOf(uID),recvId,false);
+        // 如果对方hr在线,那么将本次的通知推送给对方
+        if(sessionPool.get(recvId)!=null){
+            content.put("self",content.getJSONObject("info").getString("self"));
+            content.put("target",content.getJSONObject("info").getString("target"));
+            content.put("time",content.getJSONObject("info").getString("time"));
+            content.put("type","alone");
+            content.put("content","您收到一位求职者的新消息");
+            content.put("recvID",recvId);
+            sendOneMessage(content);
+        }
+    }
+
+    // 处理认证头
+    public void ws_handler_token(JSONObject content){
+        content.put("header","Eval认证");
+        content.put("target",uID);
+        content.put("_id",uID);
+        content.put("ContactID",this.ContactID);
+        // 认证时,将当前用户所有的聊天数据返回至前端
+        content.put("content",chatService.getChatById(uID));
+        content.put("recvID",uID);
+        content.put("readList",chatService.getChatState(String.valueOf(uID)));
+        sendOneMessage(content);
+    }
+
+    // 处理私聊消息
+    public void ws_message_alone(JSONObject content){
+        // 将信息反馈到用户,-1是机器人,不用修改数据库
+        if(content.getJSONObject("target").getInteger("id")==-1){
+            content.put("recvID",uID);
+            content.put("type","system");
+            content.put("content",content.getString("content"));
+        }else{
+            ChatDO chat = new ChatDO();
+            chat.setContent(content.getString("content"));
+            chat.setSendId(String.valueOf(uID));
+            chat.setRecvId(content.getString("recvID"));
+            chat.setSelf(content.getString("self"));
+            chat.setTarget(content.getString("target"));
+            chat.setTimestamp(content.getString("time"));
+            chatService.insertChat(chat);
+            // 修改消息已读状态
+            chatService.changeChatState(String.valueOf(uID),content.getString("recvID"),false);
+        }
+        sendOneMessage(content);
+    }
+
+    public String ws_heartbeat(JSONObject content){
+        String user_online = "";
+        String[] user_list = content.getString("friends_list").split("|");
+        for (String id:user_list) {
+            if (sessionPool.get(id) !=null){
+                user_online += id+"|";
+            }
+        }
+        return user_online;
     }
 }

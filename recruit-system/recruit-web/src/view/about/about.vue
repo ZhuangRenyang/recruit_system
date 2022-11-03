@@ -2,7 +2,7 @@
   <div class="container" v-if="!showDetail && !showHot">
     <!-- <div class="header">
       <div class="title">
-        欢迎使用校企直聘网系统
+        欢迎使用校企招聘网系统
         <img :src="logo" alt="">
       </div>
     </div> -->

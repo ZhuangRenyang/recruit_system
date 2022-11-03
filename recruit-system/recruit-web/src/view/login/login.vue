@@ -3,7 +3,7 @@
     <!-- <div class="team-name hidden-sm-and-down"><img src="@/assets/image/login/team-name.png" alt="logo" /></div> -->
     <div class="form-box" v-loading="loading" element-loading-background="rgba(0, 0, 0, 0)">
       <div class="title" style="margin-left: 350px">
-        <h1 title="Lin">校企直聘网</h1>
+        <h1 title="Lin">校企招聘网</h1>
       </div>
       <form
         class="login-form"
