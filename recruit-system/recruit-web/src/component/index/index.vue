@@ -362,7 +362,7 @@ export default {
 				// check
 				for(let i in this.registerform){
 					if(typeof(this.registerform[i]) != "string") continue;
-					if(!this.registerform[i].replaceAll(" ","").length){
+					if(!this.registerform[i].replace(/ /g,"").length){
 						return this.$message.warning("内容不能为空");
 					}
 				}
@@ -474,7 +474,7 @@ export default {
 		},
 		// 登录,并对登录的操作进行简单的处理
 		signLogin(){
-			if(this.form.username.replaceAll(" ","").length<1 || this.form.password.replaceAll(" ","").length<1){
+			if(this.form.username.replace(/ /g,"").length<1 || this.form.password.replace(/ /g,"").length<1){
 				return this.$message.warning("账号或密码不能为空");
 			}
 			if(this.nowWait>0){return this.$message.warning("操作过快.");}

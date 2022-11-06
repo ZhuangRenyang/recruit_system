@@ -58,15 +58,19 @@ class Application {
   
   static async getMsg(msg) {
     try{
-      return await axios.get(`/msg-api/api/api-xiaoai/talk.php?msg=${msg}`)
+      return {
+        total:1,
+        // data:await axios.get(`https://v.api.aa1.cn/api/api-xiaoai/talk.php?msg=${msg}`)
+        data:await axios.get(`/msg-api/api/api-xiaoai/talk.php?msg=${msg}`)
+      }
     }catch(e){
-      console.log("自动回复失败:",e);
-      return {total:0}
+      // console.log("自动回复失败:",e);
+      return {total:0,data:"对不起，暂不支持该功能，你和我聊点儿别的吧"}
     }
   }
 
   static async ESsituation(){
-    return await axios.get(`/ES-api/wapicovid19/ncov.php?key=62e34ad34025d5d5127135efa58d4ca8`)
+    return await axios.get(`http://iwenwiki.com/wapicovid19/ncov.php?key=62e34ad34025d5d5127135efa58d4ca8`)
   }
 }
 

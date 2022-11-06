@@ -111,7 +111,7 @@ public class WebSocket {
                 break;
             case "tips":
                 // 登录时,告诉客户端是否有新消息
-                content.put("isTip",chatService.getChatState(String.valueOf(uID)).isEmpty() ? false : true);
+                content.put("isTip", !chatService.getChatState(String.valueOf(uID)).isEmpty());
                 content.put("recvID",uID);
                 content.put("type","tips");
                 sendOneMessage(content);
@@ -173,7 +173,7 @@ public class WebSocket {
                     data.put("target",uuid);
                     data.put("_id",uuid);
                 }
-                log.info("【websocket消息】 单点消息:" + data.getString("content"));
+//                log.info("【websocket消息】 单点消息:" + data.getString("content"));
                 session.getAsyncRemote().sendText(String.valueOf(data));
             } catch (Exception e) {
                 e.printStackTrace();

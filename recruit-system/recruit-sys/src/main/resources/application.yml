@@ -37,7 +37,7 @@ spring:
   redis:
     database: 0
     # redis服务器地址
-    #        host: 39.107.231.225
+#    host: 172.17.0.1
     host: 127.0.0.1
     port: 6379
     # redis 密码

@@ -25,7 +25,7 @@
 						</div>
 						<div class="card_workMoney">
 							<!-- <span style="float: left;">薪资：</span> -->
-							<span style="float: left;" v-if="work.salary_down>1000">{{work.salary_down/1000}}k</span>
+							<span style="float: left;" v-if="work.salary_down>=1000">{{work.salary_down/1000}}k</span>
 							<span style="float: left;" v-else>{{work.salary_down}}元</span>
 							<span style="float: left;">~</span>
 							<span style="float: left;" v-if="work.salary_up>1000">{{work.salary_up/1000}}k</span>

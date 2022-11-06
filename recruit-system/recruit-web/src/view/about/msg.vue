@@ -78,9 +78,8 @@ export default{
 				allow:true,
 				timer:null
 			},
-			online:[],
 			hart:{
-				timeout:5,  // 每隔一段时间监听一次在线客户端 /s
+				timer:5,  // 每隔一段时间监听一次在线客户端 /s
 				type:"ping",
 				timeObj:null,
 				check:{} // 当客户端离线之后,第一次离线的加入对象内, 如果第二次还是离线,那么将目标用户标志为离线,避免重复闪烁
@@ -144,6 +143,7 @@ export default{
 				this.chatInfo["-1"]["online"] = true
 				let msgInfo = {type:"token",_id:this.me.id}
 				this.$ws.ws.send(JSON.stringify(msgInfo))
+				
 				this.$ws.ws.onmessage = async (res)=>{
 					let data = JSON.parse(res.data)
 					// console.log("res:",data); 
@@ -187,7 +187,7 @@ export default{
 							this.selectInfo = this.chatInfo[data.ContactID];
 							this.selectInfo.isRead = 1;
 						}else{
-							let readList = data.readList.replaceAll("&","").split("^").filter(item =>item!="")
+							let readList = data.readList.replace(/&/g,"").split("^").filter(item =>item!="")
 							if(readList.length){
 								this.selectInfo = this.chatInfo[readList[0]];
 								if(this.selectInfo && !this.selectInfo.isRead){
@@ -200,7 +200,7 @@ export default{
 						this.hartCheck(this.chatInfo)
 						this.hart.timeObj = setInterval(() => {
 							this.hartCheck(this.chatInfo)
-						}, this.hart.timeout*1000);
+						}, this.hart.timer*1000);
 					}
 					else if (data.type=="alone"){
 						if(this.chatInfo[data.self.id]){

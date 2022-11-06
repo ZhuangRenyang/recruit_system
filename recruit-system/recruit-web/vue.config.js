@@ -42,21 +42,12 @@ module.exports = {
     port: 8080,
     // 代理服务器 '
     proxy:{
-      "/eval-api":{
-        target:"http://43.143.149.16:5000",
-        changeOrigin : true,   //允许跨域
-        pathRewrite:{"^/eval-api":""}
-      },
+      // 打包后无需代理即可请求api
       "/msg-api":{
         target:"https://v.api.aa1.cn",
         changeOrigin : true,   //允许跨域
         pathRewrite:{"^/msg-api":""}
       },
-      "/ES-api":{
-        target:"http://iwenwiki.com",
-        changeOrigin : true,
-        pathRewrite:{"^/ES-api":""}
-      }
     }
 }
 }
