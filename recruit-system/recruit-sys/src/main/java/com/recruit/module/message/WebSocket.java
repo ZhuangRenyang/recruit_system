@@ -52,11 +52,11 @@ public class WebSocket {
     public void onOpen(Session session, @PathParam(value = "uID") String userId) {
         this.session = session;
         if(userId.equals("undefined")){
-            log.error("【websocket消息】连接失败,userIdw为空(userId)");
+            log.error("【websocket消息】连接失败,userIdw为空("+userId+")");
             return;
         }
         this.uID = Integer.valueOf(userId);
-        if(sessionPool.get(this) == null){
+        if(sessionPool.get(userId) == null){
             webSockets.add(this);
         }
         sessionPool.put(userId, session);
@@ -301,7 +301,7 @@ public class WebSocket {
 
     public String ws_heartbeat(JSONObject content){
         String user_online = "";
-        String[] user_list = content.getString("friends_list").split("|");
+        String[] user_list = content.getString("friends_list").split("\\|");
         for (String id:user_list) {
             if (sessionPool.get(id) !=null){
                 user_online += id+"|";

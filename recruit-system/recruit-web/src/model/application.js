@@ -58,10 +58,11 @@ class Application {
   
   static async getMsg(msg) {
     try{
+      let data = await axios.get(`/msg-api/api/api-xiaoai/talk.php?msg=${msg}`);
       return {
         total:1,
         // data:await axios.get(`https://v.api.aa1.cn/api/api-xiaoai/talk.php?msg=${msg}`)
-        data:await axios.get(`/msg-api/api/api-xiaoai/talk.php?msg=${msg}`)
+        data:data.data ? data.data : data
       }
     }catch(e){
       // console.log("自动回复失败:",e);

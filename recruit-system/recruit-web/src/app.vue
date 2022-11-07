@@ -10,8 +10,8 @@ import store from '@/store';
 export default {
 	data() {
 		return {
-		timer: null,
-		eventBus: new Vue(),
+			timer: null,
+			eventBus: new Vue(),
 		}
 	},
 	mounted() {
@@ -71,7 +71,7 @@ export default {
 					}
 				}
 			}
-		}
+		},
   	},
 }
 

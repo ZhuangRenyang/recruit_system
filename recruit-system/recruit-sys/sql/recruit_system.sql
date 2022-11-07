@@ -11,7 +11,7 @@
  Target Server Version : 80025
  File Encoding         : 65001
 
- Date: 01/11/2022 20:34:03
+ Date: 07/11/2022 23:17:47
 */
 
 SET NAMES utf8mb4;
@@ -34,7 +34,7 @@ CREATE TABLE `application`  (
   `update_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
   `delete_time` datetime(0) DEFAULT NULL COMMENT '删除时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 78 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 80 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of application
@@ -69,9 +69,10 @@ INSERT INTO `application` VALUES (72, 1, NULL, 2, 19, 5, 6, 1, '2022-04-24 17:35
 INSERT INTO `application` VALUES (73, 2, NULL, 2, 15, 5, 7, 2, '2022-04-24 17:35:44', '2022-04-24 17:35:44', NULL);
 INSERT INTO `application` VALUES (74, 3, NULL, 1, 18, 4, 6, 1, '2022-04-26 18:05:53', '2022-04-26 18:05:53', NULL);
 INSERT INTO `application` VALUES (75, 4, NULL, 1, 2, 4, 6, 1, '2022-04-26 18:11:07', '2022-04-26 18:11:07', NULL);
-INSERT INTO `application` VALUES (76, 0, NULL, 11, 1, 17, 6, 1, '2022-09-02 09:57:05', '2022-09-02 09:57:05', NULL);
+INSERT INTO `application` VALUES (76, 0, NULL, 11, 1, 17, 6, 1, '2022-09-02 09:57:05', '2022-09-02 09:57:05', '2022-11-04 12:37:37');
 INSERT INTO `application` VALUES (77, 0, NULL, 11, 14, 17, 6, 1, '2022-09-02 10:56:14', '2022-09-02 10:56:14', '2022-09-02 12:37:18');
 INSERT INTO `application` VALUES (78, 0, NULL, 11, 2, 17, 6, 1, '2022-09-02 12:37:42', '2022-09-02 12:37:42', '2022-09-02 12:38:38');
+INSERT INTO `application` VALUES (79, 0, NULL, 11, 1, 17, 6, 1, '2022-11-04 19:12:44', '2022-11-04 19:12:44', NULL);
 
 -- ----------------------------
 -- Table structure for category
@@ -87,26 +88,31 @@ CREATE TABLE `category`  (
   `delete_time` datetime(3) DEFAULT NULL COMMENT '删除时间',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `categoryName_UNIQUE`(`name`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of category
 -- ----------------------------
-INSERT INTO `category` VALUES (1, 'Java开发', 'Java', '这个分类是Java开发', '2021-05-02 00:29:10.235', '2021-05-02 00:29:10.235', NULL);
-INSERT INTO `category` VALUES (2, 'C++开发', 'C++', '这个分类是C++开发', '2021-05-02 00:29:17.152', '2021-05-02 00:29:17.152', NULL);
-INSERT INTO `category` VALUES (3, '前端开发', '前端', '这个分类是前端开发', '2021-05-02 00:29:37.067', '2021-05-02 00:29:37.067', NULL);
-INSERT INTO `category` VALUES (4, '后端开发', '后端', '这个分类是后台开发', '2021-05-02 00:29:48.987', '2021-05-02 00:29:48.987', NULL);
-INSERT INTO `category` VALUES (5, '数据挖掘', '数据', '这个分类是数据挖掘', '2021-05-02 00:30:03.599', '2021-05-02 00:30:03.599', NULL);
-INSERT INTO `category` VALUES (6, '大数据开发', '大数据', '这个分类是大数据开发', '2021-05-02 00:30:19.041', '2021-05-02 00:30:19.041', NULL);
-INSERT INTO `category` VALUES (7, '测试开发', '测试', '这个分类是测试开发', '2021-05-02 00:30:28.050', '2021-05-02 00:30:28.050', NULL);
-INSERT INTO `category` VALUES (8, '软件测试', '软件', '这个分类是软件测试', '2021-05-02 00:30:38.467', '2021-05-02 00:30:38.467', NULL);
-INSERT INTO `category` VALUES (9, 'PHP开发', 'PHP', '这个分类是php开发', '2021-05-02 00:31:44.027', '2021-05-02 00:31:44.027', NULL);
-INSERT INTO `category` VALUES (10, 'GO开发', 'GO', '这个分类是GO开发', '2021-05-02 00:32:06.827', '2021-05-02 00:32:06.827', NULL);
-INSERT INTO `category` VALUES (11, 'web前端', 'web', '这个分类是Web前端', '2021-05-02 00:33:26.299', '2021-05-02 00:33:26.299', NULL);
-INSERT INTO `category` VALUES (12, '算法开发', '算法', '这个分类是算法开发', '2021-05-02 00:33:37.904', '2021-05-02 00:33:37.904', NULL);
-INSERT INTO `category` VALUES (13, 'python开发', 'python', '这个分类是python开发', '2021-05-02 00:35:49.622', '2021-05-02 00:35:49.622', NULL);
-INSERT INTO `category` VALUES (14, '网络工程师', 'net', '这个分类是网络工程师', '2021-05-02 00:35:49.622', '2021-05-02 00:35:49.622', NULL);
-INSERT INTO `category` VALUES (15, '运维工程师', 'shell', '这个分类是运维工程师', '2021-05-02 00:35:49.622', '2021-05-02 00:35:49.622', NULL);
+INSERT INTO `category` VALUES (1, 'Java开发', 'Java', '搜索Java开发相关的职位', '2021-05-02 00:29:10.235', '2021-05-02 00:29:10.235', NULL);
+INSERT INTO `category` VALUES (2, 'C++开发', 'C++', '搜索C++开发相关的职位', '2021-05-02 00:29:17.152', '2021-05-02 00:29:17.152', NULL);
+INSERT INTO `category` VALUES (3, '前端开发', '前端', '搜索前端开发相关的职位', '2021-05-02 00:29:37.067', '2021-05-02 00:29:37.067', NULL);
+INSERT INTO `category` VALUES (4, '后端开发', '后端', '搜索后台开发相关的职位', '2021-05-02 00:29:48.987', '2021-05-02 00:29:48.987', NULL);
+INSERT INTO `category` VALUES (5, '数据挖掘', '数据', '搜索数据挖掘相关的职位', '2021-05-02 00:30:03.599', '2021-05-02 00:30:03.599', NULL);
+INSERT INTO `category` VALUES (6, '大数据开发', '大数据', '搜索大数据开发相关的职位', '2021-05-02 00:30:19.041', '2021-05-02 00:30:19.041', NULL);
+INSERT INTO `category` VALUES (7, '测试开发', '测试', '搜索测试开发相关的职位', '2021-05-02 00:30:28.050', '2021-05-02 00:30:28.050', NULL);
+INSERT INTO `category` VALUES (8, '软件测试', '软件', '搜索软件测试相关的职位', '2021-05-02 00:30:38.467', '2021-05-02 00:30:38.467', NULL);
+INSERT INTO `category` VALUES (9, 'PHP开发', 'PHP', '搜索php开发相关的职位', '2021-05-02 00:31:44.027', '2021-05-02 00:31:44.027', NULL);
+INSERT INTO `category` VALUES (10, 'GO开发', 'GO', '搜索GO开发相关的职位', '2021-05-02 00:32:06.827', '2021-05-02 00:32:06.827', NULL);
+INSERT INTO `category` VALUES (11, 'web前端', 'web', '搜索Web前端相关的职位', '2021-05-02 00:33:26.299', '2021-05-02 00:33:26.299', NULL);
+INSERT INTO `category` VALUES (12, '算法开发', '算法', '搜索算法开发相关的职位', '2021-05-02 00:33:37.904', '2021-05-02 00:33:37.904', NULL);
+INSERT INTO `category` VALUES (13, 'python开发', 'python', '搜索python开发相关的职位', '2021-05-02 00:35:49.622', '2021-05-02 00:35:49.622', NULL);
+INSERT INTO `category` VALUES (14, '网络工程师', 'net', '搜索网络工程师相关的职位', '2021-05-02 00:35:49.622', '2021-05-02 00:35:49.622', NULL);
+INSERT INTO `category` VALUES (15, '运维工程师', 'shell', '搜索运维工程师相关的职位', '2021-05-02 00:35:49.622', '2021-05-02 00:35:49.622', NULL);
+INSERT INTO `category` VALUES (16, '客服', '客服', '搜索客服相关的职位', '2021-05-02 00:35:49.622', '2021-05-02 00:35:49.622', NULL);
+INSERT INTO `category` VALUES (17, '文员', '文员', '没有具体的分类职位', '2021-05-02 00:35:49.622', '2021-05-02 00:35:49.622', NULL);
+INSERT INTO `category` VALUES (18, '其他', '其他', '没有具体的分类职位', '2021-05-02 00:35:49.622', '2021-05-02 00:35:49.622', NULL);
+INSERT INTO `category` VALUES (19, '学徒', '学徒', '没有具体的分类职位', '2021-05-02 00:35:49.622', '2021-05-02 00:35:49.622', NULL);
+INSERT INTO `category` VALUES (20, '医疗', '医疗', '没有具体的分类职位', '2021-05-02 00:35:49.622', '2021-05-02 00:35:49.622', NULL);
 
 -- ----------------------------
 -- Table structure for chat
@@ -121,7 +127,7 @@ CREATE TABLE `chat`  (
   `target` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '0' COMMENT '接收信息者的数据',
   `timestamp` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '0' COMMENT '发送信息的时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for company
@@ -141,7 +147,7 @@ CREATE TABLE `company`  (
   `update_time` datetime(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3) COMMENT '更新时间',
   `delete_time` datetime(3) DEFAULT NULL COMMENT '删除时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 33 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 34 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of company
@@ -151,22 +157,22 @@ INSERT INTO `company` VALUES (2, '腾讯', 'Tencent', '广东深圳', 'https://t
 INSERT INTO `company` VALUES (3, '百度', 'BaiDu', '广东深圳', 'https://img.zcool.cn/community/011a5357b64c620000018c1b9e7e67.png@2o.png', 'https://img.zcool.cn/community/013f735739d9fb6ac72580ed89e16a.jpg@1280w_1l_2o_100sh.jpg', '用科技让复杂的世界更简单', '百度是拥有强大互联网基础的领先AI公司。百度愿景是：成为最懂用户，并能帮助人们成长的全球顶级高科技公司', 1, '2021-05-01 18:43:48.372', '2021-05-01 18:43:48.372', NULL);
 INSERT INTO `company` VALUES (4, '字节跳动', 'ByteDance', '中国北京', 'https://tse4-mm.cn.bing.net/th/id/OIP-C.xk8FKrw_AYcVPpXbWu3aUwHaHa?w=172&h=180&c=7&r=0&o=5&pid=1.7', 'https://www.gsm.pku.edu.cn/__local/C/05/38/E06DDA47A955434057E07991C04_BC660E22_38246.jpeg', '建设全球创作与交流平台', '北京字节跳动科技有限公司，成立于2012年3月，是最早将人工智能应用于移动互联网场景的科技企业之一，是中国北京的一家信息科技公司，', 1, '2021-05-01 18:45:27.184', '2021-05-01 18:45:27.184', NULL);
 INSERT INTO `company` VALUES (5, '京东', 'JD', '中国北京', 'https://ts2.cn.mm.bing.net/th?id=OIP-C.C0sXk2GtO2SPLwJkgDnxYQHaF7&w=279&h=223&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2', 'https://img.zcool.cn/community/0174e85c6f5afea801203d221dd069.jpg@1280w_1l_2o_100sh.jpg', '网购上京东，省钱又放心', '京东（股票代码：JD），中国自营式电商企业，创始人刘强东担任京东集团董事局主席兼首席执行官 [1]  。旗下设有京东商城、京东金融、拍拍网、京东智能、O2O及海外事业部等', 1, '2021-05-01 18:46:22.717', '2021-05-01 18:46:22.717', NULL);
-INSERT INTO `company` VALUES (6, '网易', 'NetEase', '广东广州', 'https://ts1.cn.mm.bing.net/th?id=OIP-C.MNGhxuyWyDuiI8Upb74AswHaDo&w=350&h=171&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2', 'https://img.zcool.cn/community/0130b158e657f5a8012049efa1e2d4.png@2o.png', '以匠心、致创新', '网易公司（NASDAQ: NTES），1997年由创始人兼CEO丁磊先生在广州创办， [1]  2000年在美国NASDAQ股票交易所挂牌上市，是中国领先的互联网技术公司', 1, '2021-05-01 18:47:08.115', '2021-05-01 18:47:08.115', NULL);
-INSERT INTO `company` VALUES (7, '深信服', 'Sangfor', '广东深圳', 'https://ts1.cn.mm.bing.net/th?id=OIP-C.MNGhxuyWyDuiI8Upb74AswHaDo&w=350&h=171&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2', 'https://ts2.cn.mm.bing.net/th?id=OIP-C.UCpKKMGG4i87r-bgNoNTigHaFH&w=300&h=207&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2', '让IT更简单、更安全、更有价值', '深信服是一家专注于企业级安全、云计算及IT基础设施的产品和服务供应商，拥有深信服智安全、信服云和深信服新IT三大业务品牌，致力于让用户的IT更简单、更安全、更有价值', 1, '2021-05-01 18:51:11.858', '2021-05-01 18:51:11.858', NULL);
-INSERT INTO `company` VALUES (8, '快手', 'KuaiShou', '中国北京', 'https://ts1.cn.mm.bing.net/th?id=OIP-C.MNGhxuyWyDuiI8Upb74AswHaDo&w=350&h=171&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2', 'https://ts2.cn.mm.bing.net/th?id=OIP-C.UCpKKMGG4i87r-bgNoNTigHaFH&w=300&h=207&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2', '痴迷于为客户创造价值', '快手科技有限公司于2015年3月20日在海淀分局登记成立。法定代表人银鑫。公司经营范围包括从事互联网文化活动；出版物零售；技术开发等', 0, '2021-05-01 18:52:22.259', '2021-05-01 18:52:22.259', NULL);
-INSERT INTO `company` VALUES (9, '作业帮', 'HomeworkHelp', '中国北京', 'https://ts1.cn.mm.bing.net/th?id=OIP-C.MNGhxuyWyDuiI8Upb74AswHaDo&w=350&h=171&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2', 'https://ts2.cn.mm.bing.net/th?id=OIP-C.UCpKKMGG4i87r-bgNoNTigHaFH&w=300&h=207&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2', '让优质教育触手可及', '作业帮致力于为全国中小学生提供全学科的学习辅导服务，作业帮累计激活用户设备突破8亿 [1]  ，月活用户约1.7亿 [2]  ，是中小学在线教育领军品牌', 0, '2021-05-01 18:54:10.459', '2021-05-01 18:54:10.459', NULL);
-INSERT INTO `company` VALUES (10, '拼多多', 'Pdd', '中国上海', 'https://ts1.cn.mm.bing.net/th?id=OIP-C.MNGhxuyWyDuiI8Upb74AswHaDo&w=350&h=171&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2', 'https://ts2.cn.mm.bing.net/th?id=OIP-C.UCpKKMGG4i87r-bgNoNTigHaFH&w=300&h=207&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2', '致力于为最广大用户提供服务', '拼多多 [1]  是国内移动互联网的主流电子商务应用产品。专注于C2M拼团购物的第三方社交电商平台，成立于2015年9月，用户通过发起和朋友、家人、邻居等的拼团，可以以更低的价格，拼团购买优质商品', 0, '2021-05-01 18:56:03.429', '2021-05-01 18:56:03.429', NULL);
-INSERT INTO `company` VALUES (11, '猿辅导', 'ApeCounseling', '中国北京', 'https://ts1.cn.mm.bing.net/th?id=OIP-C.MNGhxuyWyDuiI8Upb74AswHaDo&w=350&h=171&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2', 'https://ts2.cn.mm.bing.net/th?id=OIP-C.UCpKKMGG4i87r-bgNoNTigHaFH&w=300&h=207&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2', '为用户打造精细化优品', '猿辅导在线教育公司的估值达到155亿美元，在全球教育科技独角兽公司中排名首位。这也是中国教育科技公司首次跻身全球教育科技独角兽第一名', 0, '2021-05-01 18:57:24.683', '2021-05-01 18:57:24.683', NULL);
-INSERT INTO `company` VALUES (12, '斗鱼', 'DouYu', '湖北武汉', 'https://ts1.cn.mm.bing.net/th?id=OIP-C.MNGhxuyWyDuiI8Upb74AswHaDo&w=350&h=171&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2', 'https://ts2.cn.mm.bing.net/th?id=OIP-C.UCpKKMGG4i87r-bgNoNTigHaFH&w=300&h=207&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2', '每个人的直播平台', '斗鱼TV是一家弹幕式直播分享网站，为用户提供视频直播和赛事直播服务。 [1-2]  斗鱼TV的前身为ACFUN生放送直播，于2014年1月1日起正式更名为斗鱼TV', 0, '2021-05-01 19:02:20.713', '2021-05-01 19:02:20.713', NULL);
-INSERT INTO `company` VALUES (13, '虎扑', 'HuPu', '广东广州', 'https://ts1.cn.mm.bing.net/th?id=OIP-C.MNGhxuyWyDuiI8Upb74AswHaDo&w=350&h=171&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2', 'https://pub-img-wfile.yuanling.com/13/58/93/14/80/96960b87b88c09c99350da601a2b6779df58abae62251489aec81088.jpg?x-oss-process=style%2F750x0', '打造认真、温暖、有趣，服务中国年轻人的直文化社区', '虎扑成立于2004年，是以篮球论坛起家，专业体育营销为根基的社区平台，创始人为程杭。截至2020年5月，虎扑用户数已超过1亿，活跃用户数达8000万，其中90%以上为男性用户', 1, '2021-05-01 19:03:15.465', '2021-05-01 19:03:15.465', NULL);
-INSERT INTO `company` VALUES (14, '爱奇艺', 'IQIYI', '中国北京', 'https://ts1.cn.mm.bing.net/th?id=OIP-C.MNGhxuyWyDuiI8Upb74AswHaDo&w=350&h=171&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2', 'https://ts2.cn.mm.bing.net/th?id=OIP-C.UCpKKMGG4i87r-bgNoNTigHaFH&w=300&h=207&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2', '让梦想绽放,让快乐简单', '爱奇艺 [1]  是由龚宇于2010年4月22日创立的在线视频网站 [2]  ，2011年11月26日启动“爱奇艺”品牌并推出全新标志', 2, '2021-05-01 19:04:06.589', '2021-05-01 19:04:06.589', NULL);
-INSERT INTO `company` VALUES (15, '奇安信', 'QianXin', '中国北京', 'https://ts1.cn.mm.bing.net/th?id=OIP-C.MNGhxuyWyDuiI8Upb74AswHaDo&w=350&h=171&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2', 'https://ts2.cn.mm.bing.net/th?id=OIP-C.UCpKKMGG4i87r-bgNoNTigHaFH&w=300&h=207&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2', '提供最安全的保障', '奇安信集团，是中国最大的网络安全公司之一，专门为政府、企业，教育、金融等机构和组织提供企业级网络安全技术、产品和服务', 2, '2021-05-01 19:05:28.171', '2021-05-01 19:05:28.171', NULL);
-INSERT INTO `company` VALUES (16, '360', 'Qihoo', '中国北京', 'https://ts1.cn.mm.bing.net/th?id=OIP-C.MNGhxuyWyDuiI8Upb74AswHaDo&w=350&h=171&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2', 'https://ts2.cn.mm.bing.net/th?id=OIP-C.UCpKKMGG4i87r-bgNoNTigHaFH&w=300&h=207&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2', '让世界更安全更美好', '奇虎360 [1]  是（北京奇虎科技有限公司）的简称，由周鸿祎于2005年9月创立，主营360杀毒为代表的免费网络安全平台和拥有360安全大脑等业务的公司', 2, '2021-05-01 19:06:13.395', '2021-05-01 19:06:13.395', NULL);
-INSERT INTO `company` VALUES (17, '顺丰', 'ShunFeng', '广东深圳', 'https://ts1.cn.mm.bing.net/th?id=OIP-C.MNGhxuyWyDuiI8Upb74AswHaDo&w=350&h=171&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2', 'https://ts2.cn.mm.bing.net/th?id=OIP-C.UCpKKMGG4i87r-bgNoNTigHaFH&w=300&h=207&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2', '为用户提供最快的服务', '顺丰是国内的快递物流综合服务商，总部位于深圳，经过多年发展，已初步建立为客户提供一体化综合物流解决方案的能力', 0, '2021-05-01 19:07:11.436', '2021-05-01 19:07:11.436', NULL);
-INSERT INTO `company` VALUES (18, '好未来', 'TAL', '中国北京', 'https://ts1.cn.mm.bing.net/th?id=OIP-C.MNGhxuyWyDuiI8Upb74AswHaDo&w=350&h=171&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2', 'https://ts2.cn.mm.bing.net/th?id=OIP-C.UCpKKMGG4i87r-bgNoNTigHaFH&w=300&h=207&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2', '用科技推动教育进步', '好未来是一个以智慧教育和开放平台为主体，以素质教育和课外辅导为载体，在全球范围内服务公办教育，助力民办教育，探索未来教育新模式的科技教育公司', 0, '2021-05-01 19:07:51.721', '2021-05-01 19:07:51.721', NULL);
-INSERT INTO `company` VALUES (19, '钛动科技', 'TecDo', '广东广州', 'https://ts1.cn.mm.bing.net/th?id=OIP-C.MNGhxuyWyDuiI8Upb74AswHaDo&w=350&h=171&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2', 'https://ts2.cn.mm.bing.net/th?id=OIP-C.UCpKKMGG4i87r-bgNoNTigHaFH&w=300&h=207&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2', '为商业化赋能', '钛动科技（TEC-DO）是基于大数据和商业智能的国际化企业服务公司。旗下拥有专注移动效果广告的Mobisummer业务品牌与全球大媒体代理UniAgency', 0, '2021-05-01 19:08:39.832', '2021-05-01 19:08:39.832', NULL);
-INSERT INTO `company` VALUES (20, '道一云', 'DO', '广东广州', 'https://ts1.cn.mm.bing.net/th?id=OIP-C.MNGhxuyWyDuiI8Upb74AswHaDo&w=350&h=171&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2', 'https://ts2.cn.mm.bing.net/th?id=OIP-C.UCpKKMGG4i87r-bgNoNTigHaFH&w=300&h=207&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2', '成为受人尊重、世界一流的全球化企业', '广州市道一信息技术有限公司（Do1 Information Technology Ltd.），创立于2004年，秉承“诚信专业，共创价值”的理念，专注于移动信息化领域的软件系统开发和业务应用创新', 2, '2021-05-01 19:09:56.695', '2021-05-01 19:09:56.695', NULL);
-INSERT INTO `company` VALUES (21, '凡科', 'Faisco', '广东广州', 'https://ts1.cn.mm.bing.net/th?id=OIP-C.MNGhxuyWyDuiI8Upb74AswHaDo&w=350&h=171&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2', NULL, '助力于中小企业', '广州凡科互联网科技股份有限公司（简称凡科）是一家助力中小企业数字化经营升级的企业', 1, '2021-05-01 19:10:40.543', '2021-05-01 19:10:40.543', NULL);
+INSERT INTO `company` VALUES (6, '网易', 'NetEase', '广东广州', 'https://tse2-mm.cn.bing.net/th/id/OIP-C.ekNUvL7Kx53CA3-qojH_JgHaHa?w=165&h=180&c=7&r=0&o=5&pid=1.7', 'https://tse3-mm.cn.bing.net/th/id/OIP-C.TPfj--o4JRJ99t8C1b9cvQHaEK?pid=ImgDet&rs=1', '以匠心、致创新', '网易公司（NASDAQ: NTES），1997年由创始人兼CEO丁磊先生在广州创办， [1]  2000年在美国NASDAQ股票交易所挂牌上市，是中国领先的互联网技术公司', 1, '2021-05-01 18:47:08.115', '2021-05-01 18:47:08.115', NULL);
+INSERT INTO `company` VALUES (7, '深信服', 'Sangfor', '广东深圳', 'https://tse1-mm.cn.bing.net/th/id/OIP-C.E-3aPAhd2uQ-yBO1Ih5ptwHaCd?w=304&h=116&c=7&r=0&o=5&pid=1.7', 'https://tse4-mm.cn.bing.net/th/id/OIP-C.OwYjorHmaBQZgDVRqQaI1wHaDT?w=198&h=89&c=7&r=0&o=5&pid=1.7', '让IT更简单、更安全、更有价值', '深信服是一家专注于企业级安全、云计算及IT基础设施的产品和服务供应商，拥有深信服智安全、信服云和深信服新IT三大业务品牌，致力于让用户的IT更简单、更安全、更有价值', 1, '2021-05-01 18:51:11.858', '2021-05-01 18:51:11.858', NULL);
+INSERT INTO `company` VALUES (8, '快手', 'KuaiShou', '中国北京', 'https://tse1-mm.cn.bing.net/th/id/OIP-C.yecGxT8MtYakZG8m4zyBggHaC9?w=261&h=140&c=7&r=0&o=5&pid=1.7', 'https://tse3-mm.cn.bing.net/th/id/OIP-C.SVid-S1oODXZCBs-JhgSOgAAAA?w=198&h=119&c=7&r=0&o=5&pid=1.7', '痴迷于为客户创造价值', '快手科技有限公司于2015年3月20日在海淀分局登记成立。法定代表人银鑫。公司经营范围包括从事互联网文化活动；出版物零售；技术开发等', 0, '2021-05-01 18:52:22.259', '2021-05-01 18:52:22.259', NULL);
+INSERT INTO `company` VALUES (9, '作业帮', 'HomeworkHelp', '中国北京', 'https://tse3-mm.cn.bing.net/th/id/OIP-C.jD8pEyQS3DOeeJCxnxPNPgAAAA?w=173&h=180&c=7&r=0&o=5&pid=1.7', 'https://tse4-mm.cn.bing.net/th/id/OIP-C.uIXDSULYEp46Y4pmEyFHkAHaE1?w=263&h=154&c=7&r=0&o=5&pid=1.7', '让优质教育触手可及', '作业帮致力于为全国中小学生提供全学科的学习辅导服务，作业帮累计激活用户设备突破8亿 [1]  ，月活用户约1.7亿 [2]  ，是中小学在线教育领军品牌', 0, '2021-05-01 18:54:10.459', '2021-05-01 18:54:10.459', NULL);
+INSERT INTO `company` VALUES (10, '拼多多', 'Pdd', '中国上海', 'https://tse1-mm.cn.bing.net/th/id/OIP-C.Lb5bTpFhRSSpcYRfg5usRwAAAA?w=216&h=85&c=7&r=0&o=5&pid=1.7', 'https://tse2-mm.cn.bing.net/th/id/OIP-C.iSHk_sUbDGBkP1xkBlEGVgHaDK?w=316&h=149&c=7&r=0&o=5&pid=1.7', '致力于为最广大用户提供服务', '拼多多 [1]  是国内移动互联网的主流电子商务应用产品。专注于C2M拼团购物的第三方社交电商平台，成立于2015年9月，用户通过发起和朋友、家人、邻居等的拼团，可以以更低的价格，拼团购买优质商品', 0, '2021-05-01 18:56:03.429', '2021-05-01 18:56:03.429', NULL);
+INSERT INTO `company` VALUES (11, '猿辅导', 'ApeCounseling', '中国北京', 'https://tse1-mm.cn.bing.net/th/id/OIP-C.sISIBExO9iqp9p5ac-t4CQAAAA?w=198&h=198&c=7&r=0&o=5&pid=1.7', 'https://tse2-mm.cn.bing.net/th/id/OIP-C.v-I7hNqRtVcZCJYmOTkuJgHaFj?w=198&h=148&c=7&r=0&o=5&pid=1.7', '为用户打造精细化优品', '猿辅导在线教育公司的估值达到155亿美元，在全球教育科技独角兽公司中排名首位。这也是中国教育科技公司首次跻身全球教育科技独角兽第一名', 0, '2021-05-01 18:57:24.683', '2021-05-01 18:57:24.683', NULL);
+INSERT INTO `company` VALUES (12, '斗鱼', 'DouYu', '湖北武汉', 'https://tse4-mm.cn.bing.net/th/id/OIP-C.WD3h6i7oaW1Yc2MVX1Ot5QAAAA?w=157&h=180&c=7&r=0&o=5&pid=1.7', 'https://tse4-mm.cn.bing.net/th/id/OIP-C.C0DnfhgtboZYMny12wb-BwHaEK?w=270&h=180&c=7&r=0&o=5&pid=1.7', '每个人的直播平台', '斗鱼TV是一家弹幕式直播分享网站，为用户提供视频直播和赛事直播服务。 [1-2]  斗鱼TV的前身为ACFUN生放送直播，于2014年1月1日起正式更名为斗鱼TV', 0, '2021-05-01 19:02:20.713', '2021-05-01 19:02:20.713', NULL);
+INSERT INTO `company` VALUES (13, '虎扑', 'HuPu', '广东广州', 'https://tse1-mm.cn.bing.net/th/id/OIP-C.GouEfaNkrBv841xPl1qQKwHaHa?w=180&h=180&c=7&r=0&o=5&pid=1.7', 'https://tse2-mm.cn.bing.net/th/id/OIP-C.vo7PC4EhIZ8SVoY9XT0dZgHaEM?w=306&h=180&c=7&r=0&o=5&pid=1.7', '打造认真、温暖、有趣，服务中国年轻人的直文化社区', '虎扑成立于2004年，是以篮球论坛起家，专业体育营销为根基的社区平台，创始人为程杭。截至2020年5月，虎扑用户数已超过1亿，活跃用户数达8000万，其中90%以上为男性用户', 1, '2021-05-01 19:03:15.465', '2021-05-01 19:03:15.465', NULL);
+INSERT INTO `company` VALUES (14, '爱奇艺', 'IQIYI', '中国北京', 'https://tse1-mm.cn.bing.net/th/id/OIP-C.q2ZKn85lYLek30ML-4TldgAAAA?w=149&h=150&c=7&r=0&o=5&pid=1.7', 'https://tse4-mm.cn.bing.net/th/id/OIP-C.2sXmcpHeysu_TkKnUjIbgwHaEK?w=198&h=111&c=7&r=0&o=5&pid=1.7', '让梦想绽放,让快乐简单', '爱奇艺 [1]  是由龚宇于2010年4月22日创立的在线视频网站 [2]  ，2011年11月26日启动“爱奇艺”品牌并推出全新标志', 2, '2021-05-01 19:04:06.589', '2021-05-01 19:04:06.589', NULL);
+INSERT INTO `company` VALUES (15, '奇安信', 'QianXin', '中国北京', 'https://tse2-mm.cn.bing.net/th/id/OIP-C.3B45JVM8lrLmADI6AdzujgAAAA?w=173&h=180&c=7&r=0&o=5&pid=1.7', 'https://tse1-mm.cn.bing.net/th/id/OIP-C.QfmC5n9RnpnCLcswe_UHDgHaDJ?w=322&h=148&c=7&r=0&o=5&pid=1.7', '提供最安全的保障', '奇安信集团，是中国最大的网络安全公司之一，专门为政府、企业，教育、金融等机构和组织提供企业级网络安全技术、产品和服务', 2, '2021-05-01 19:05:28.171', '2021-05-01 19:05:28.171', NULL);
+INSERT INTO `company` VALUES (16, '360', 'Qihoo', '中国北京', 'https://tse3-mm.cn.bing.net/th/id/OIP-C.o2frHEzfvFUZxBTH8w8EfwAAAA?w=179&h=180&c=7&r=0&o=5&pid=1.7', 'https://tse4-mm.cn.bing.net/th/id/OIP-C.wA_eyUxHDayUvtJOe-gUmAHaEK?w=321&h=180&c=7&r=0&o=5&pid=1.7', '让世界更安全更美好', '奇虎360 [1]  是（北京奇虎科技有限公司）的简称，由周鸿祎于2005年9月创立，主营360杀毒为代表的免费网络安全平台和拥有360安全大脑等业务的公司', 2, '2021-05-01 19:06:13.395', '2021-05-01 19:06:13.395', NULL);
+INSERT INTO `company` VALUES (17, '顺丰', 'ShunFeng', '广东深圳', 'https://tse3-mm.cn.bing.net/th/id/OIP-C.8Fh-Ds90vmRUx_nBaAHfwgHaHa?w=198&h=198&c=7&r=0&o=5&pid=1.7', 'https://tse1-mm.cn.bing.net/th/id/OIP-C.RF5Lg8uyptU10v4ni94v2gHaMA?w=196&h=318&c=7&r=0&o=5&pid=1.7', '为用户提供最快的服务', '顺丰是国内的快递物流综合服务商，总部位于深圳，经过多年发展，已初步建立为客户提供一体化综合物流解决方案的能力', 0, '2021-05-01 19:07:11.436', '2021-05-01 19:07:11.436', NULL);
+INSERT INTO `company` VALUES (18, '好未来', 'TAL', '中国北京', 'https://tse4-mm.cn.bing.net/th/id/OIP-C.0-WkPT9UypO9l5sqaZ7HEwHaHa?w=198&h=198&c=7&r=0&o=5&pid=1.7', 'https://tse1-mm.cn.bing.net/th/id/OIP-C.5dANhRv4WkkxKym_GMM15QHaDt?w=198&h=99&c=7&r=0&o=5&pid=1.7', '用科技推动教育进步', '好未来是一个以智慧教育和开放平台为主体，以素质教育和课外辅导为载体，在全球范围内服务公办教育，助力民办教育，探索未来教育新模式的科技教育公司', 0, '2021-05-01 19:07:51.721', '2021-05-01 19:07:51.721', NULL);
+INSERT INTO `company` VALUES (19, '钛动科技', 'TecDo', '广东广州', 'https://tse1-mm.cn.bing.net/th/id/OIP-C.xc8hJR2_rincb-MH3CjFIAAAAA?w=198&h=198&c=7&r=0&o=5&pid=1.7', 'https://tse4-mm.cn.bing.net/th/id/OIP-C.rigg3QAg7764xT5RBt8vlgAAAA?w=198&h=142&c=7&r=0&o=5&pid=1.7', '为商业化赋能', '钛动科技（TEC-DO）是基于大数据和商业智能的国际化企业服务公司。旗下拥有专注移动效果广告的Mobisummer业务品牌与全球大媒体代理UniAgency', 0, '2021-05-01 19:08:39.832', '2021-05-01 19:08:39.832', NULL);
+INSERT INTO `company` VALUES (20, '道一云', 'DO', '广东广州', 'https://tse1-mm.cn.bing.net/th/id/OIP-C.YgXB4zpyOF5nZwoX6F3bSQAAAA?w=204&h=127&c=7&r=0&o=5&pid=1.7', 'https://tse3-mm.cn.bing.net/th/id/OIP-C.tM26hRn4ICBD0HACsMWyegHaDt?w=338&h=175&c=7&r=0&o=5&pid=1.7', '成为受人尊重、世界一流的全球化企业', '广州市道一信息技术有限公司（Do1 Information Technology Ltd.），创立于2004年，秉承“诚信专业，共创价值”的理念，专注于移动信息化领域的软件系统开发和业务应用创新', 2, '2021-05-01 19:09:56.695', '2021-05-01 19:09:56.695', NULL);
+INSERT INTO `company` VALUES (21, '凡科', 'Faisco', '广东广州', 'https://tse4-mm.cn.bing.net/th/id/OIP-C.dOxMyF1RVp19mxl2JlYPFAHaHa?w=173&h=180&c=7&r=0&o=5&pid=1.7', 'https://tse4-mm.cn.bing.net/th/id/OIP-C.RcZrnJn4kjxZ5W7ZklghEQHaE8?w=198&h=132&c=7&r=0&o=5&pid=1.7', '助力于中小企业', '广州凡科互联网科技股份有限公司（简称凡科）是一家助力中小企业数字化经营升级的企业', 1, '2021-05-01 19:10:40.543', '2021-05-01 19:10:40.543', NULL);
 
 -- ----------------------------
 -- Table structure for education
@@ -191,7 +197,7 @@ INSERT INTO `education` VALUES (1, 2, '江西财经大学', '软件工程', 2, '
 INSERT INTO `education` VALUES (2, 1, '广州大学', '计算机科学与技术', 2, '主修课程：离散数学、算法与数据结构、计算机组成原理、计算机操作系统、计算机网络基础、计算机编译原理、计算机数据库原理、C语言/c++语言、Java语言等。', '2015-08-15', '2019-06-13');
 INSERT INTO `education` VALUES (3, 1, '江西师范大学', '教育技术学', 3, '主修课程：教育技术学、教学系统设计、计算机教育基础、网络教育应用、网站开发等。', '2019-08-28', '2022-06-28');
 INSERT INTO `education` VALUES (5, 10, '江西财经大学', '金融学', 2, 'XXXXXXXXXXXXXX', '2016-09-01', '2020-06-30');
-INSERT INTO `education` VALUES (6, 11, '北京大学', '计算机网络', 4, '', '2020-09-10', '2022-10-31');
+INSERT INTO `education` VALUES (6, 11, '贵州大学', '计算机科学', 2, '', '2020-09-09', '2024-09-01');
 
 -- ----------------------------
 -- Table structure for experience
@@ -371,7 +377,7 @@ CREATE TABLE `group`  (
   `delete_time` datetime(3) DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `name_del`(`name`, `delete_time`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 139 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 140 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of group
@@ -392,7 +398,7 @@ CREATE TABLE `group_permission`  (
   `permission_id` int unsigned NOT NULL COMMENT '权限id',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `group_id_permission_id`(`group_id`, `permission_id`) USING BTREE COMMENT '联合索引'
-) ENGINE = InnoDB AUTO_INCREMENT = 999 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1000 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of group_permission
@@ -538,7 +544,12 @@ CREATE TABLE `log`  (
   `update_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP(0),
   `delete_time` datetime(0) DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2802 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 128 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of log
+-- ----------------------------
+INSERT INTO `log` VALUES (1, '查看简历投递状况', 17, 'eval', 200, 'GET', '/recruit/application/page/find/17', '我的投递箱', '2022-11-07 14:59:40', '2022-11-07 22:59:39', NULL);
 
 -- ----------------------------
 -- Table structure for notify
@@ -554,7 +565,7 @@ CREATE TABLE `notify`  (
   `update_time` datetime(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
   `delete_time` datetime(3) DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 28 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 29 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of notify
@@ -586,7 +597,7 @@ CREATE TABLE `permission`  (
   `update_time` datetime(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
   `delete_time` datetime(3) DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 142 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 143 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of permission
@@ -674,62 +685,62 @@ CREATE TABLE `position`  (
 -- ----------------------------
 -- Records of position
 -- ----------------------------
-INSERT INTO `position` VALUES (1, 'Java工程师', '熟练使用RPC框架，具备相关的分布式开发经验', 3, '贵阳', 6000, 3000, '2021-04-01 00:17:19.000', 1, 729, 1, 6, 1, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '本科');
-INSERT INTO `position` VALUES (2, 'Java工程师', '接收应届实习生，实习期满应聘上岗', 5, '遵义', 6000, 3000, '2021-04-01 16:17:31.000', 1, 118, 1, 6, 1, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '本科');
-INSERT INTO `position` VALUES (3, 'Java工程师', '有扎实的java基础，熟悉分布式、缓存、异步消息等原理和应用', 15, '贵安新区', 6000, 3000, '2021-04-03 00:17:35.000', 1, 229, 1, 7, 2, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
-INSERT INTO `position` VALUES (4, 'Java工程师', 'JAVA WEB方向2年+经验', 2, '遵义', 6000, 3000, '2021-04-03 16:17:40.000', 1, 229, 1, 7, 2, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
-INSERT INTO `position` VALUES (5, 'C++工程师', '可接收计算机相关专业应届生，表现优秀者加薪转正', 30, '贵安新区', 6000, 3000, '2021-04-04 16:17:44.000', 1, 22, 2, 7, 2, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '本科');
-INSERT INTO `position` VALUES (6, 'C++工程师', '3-5年工作经验，计算机相关专业毕业', 1, '铜仁', 6000, 3000, '2021-04-05 08:17:52.000', 0, 127, 2, 6, 1, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', '2021-05-03 01:27:33.000', '本科');
-INSERT INTO `position` VALUES (7, 'PHP工程师', '一年以上PHP开发经验 （项目经验丰富的，也可以升级为高级开发工程师）', 10, '兴义', 6000, 3000, '2021-04-05 16:17:58.000', 0, 236, 9, 6, 1, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', '2021-05-03 00:54:07.000', '本科');
-INSERT INTO `position` VALUES (8, 'PHP工程师', '熟悉LNMP/WNMP开发环境 , 熟练使用Yaf, Yii, ThinkPHP等一种或多种框架.', 5, '贵安新区', 6000, 3000, '2021-04-07 00:18:06.000', 1, 314, 9, 7, 2, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
-INSERT INTO `position` VALUES (9, '.NET工程师', '熟悉WinForm/WPF窗体开发并有实际项目经验', 2, '遵义', 6000, 3000, '2021-03-15 00:18:11.000', 1, 92, 11, 7, 2, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
-INSERT INTO `position` VALUES (10, 'Python数据分析', '熟练使用Linux，可以快速上手编写shell、powershell、cmd等操作系统脚本', 2, '遵义', 6000, 3000, '2021-03-16 00:18:21.000', 1, 108, 13, 7, 1, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
-INSERT INTO `position` VALUES (11, 'Python开发', '4年以上互联网产品后台研发经验，2年以上后台构架经验', 2, '贵安新区', 6000, 3000, '2021-03-18 00:18:27.000', 1, 109, 13, 6, 1, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', '2022-03-19 16:10:29.000', '专科');
-INSERT INTO `position` VALUES (12, 'Python开发', '精通Python，2年或以上Python项目经验', 3, '贵阳', 6000, 3000, '2021-03-19 00:18:34.000', 1, 189, 13, 6, 1, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '本科');
-INSERT INTO `position` VALUES (13, '数据测试师', '熟悉 Linux平台上的编程环境，精通Java开发，精通 Python/Shell等脚本语言', 12, '贵阳', 6000, 3000, '2021-03-20 00:18:40.000', 1, 216, 5, 6, 1, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '本科');
-INSERT INTO `position` VALUES (14, '数据工程师', '熟悉Hadoop、Hive、Spark、流式计算、实时计算等大数据相关技术者优先，熟悉时序挖掘、文本挖掘、网络挖掘等优先', 2, '贵安新区', 6000, 3000, '2021-03-21 00:18:47.000', 1, 222, 5, 6, 1, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '本科');
-INSERT INTO `position` VALUES (15, '数据挖掘工程师', '精通Python，熟悉PHP/GO/Java/C++/C等语言中的一种或几种', 2, '清镇', 6000, 3000, '2021-03-22 00:18:54.000', 1, 335, 5, 7, 2, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
+INSERT INTO `position` VALUES (1, 'Java工程师', '熟练使用RPC框架，具备相关的分布式开发经验', 3, '北京', 12000, 8000, '2021-04-01 00:17:19.000', 1, 745, 1, 6, 1, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '本科');
+INSERT INTO `position` VALUES (2, 'Java工程师(实习)', '接收应届实习生，实习期满应聘上岗', 5, '遵义', 4000, 3000, '2021-04-01 16:17:31.000', 1, 123, 1, 6, 1, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '本科');
+INSERT INTO `position` VALUES (3, 'Java工程师', '有扎实的java基础，熟悉分布式、缓存、异步消息等原理和应用', 5, '深圳', 10000, 7000, '2021-04-03 00:17:35.000', 1, 233, 1, 7, 2, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
+INSERT INTO `position` VALUES (4, 'Java工程师(实习)', 'JAVA WEB方向2年+经验', 2, '深圳', 6000, 4000, '2021-04-03 16:17:40.000', 1, 233, 1, 7, 2, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
+INSERT INTO `position` VALUES (5, 'C++工程师', '可接收计算机相关专业应届生，表现优秀者加薪转正', 30, '贵安新区', 6000, 3000, '2021-04-04 16:17:44.000', 1, 27, 2, 7, 2, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '本科');
+INSERT INTO `position` VALUES (6, 'C++工程师', '3-5年工作经验，计算机相关专业毕业', 1, '贵阳', 5000, 3500, '2021-04-05 08:17:52.000', 0, 127, 2, 6, 1, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', '2021-05-03 01:27:33.000', '本科');
+INSERT INTO `position` VALUES (7, 'PHP工程师', '一年以上PHP开发经验 （项目经验丰富的，也可以升级为高级开发工程师）', 10, '北京', 11000, 8500, '2021-04-05 16:17:58.000', 0, 236, 9, 6, 1, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', '2021-05-03 00:54:07.000', '本科');
+INSERT INTO `position` VALUES (8, 'PHP工程师', '熟悉LNMP/WNMP开发环境 , 熟练使用Yaf, Yii, ThinkPHP等一种或多种框架.', 5, '贵安新区', 4500, 3200, '2021-04-07 00:18:06.000', 1, 320, 9, 7, 2, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
+INSERT INTO `position` VALUES (9, '.NET工程师', '熟悉WinForm/WPF窗体开发并有实际项目经验', 2, '广州', 9000, 7500, '2021-03-15 00:18:11.000', 1, 93, 11, 7, 2, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
+INSERT INTO `position` VALUES (10, 'Python数据分析', '熟练使用Linux，可以快速上手编写shell、powershell、cmd等操作系统脚本', 2, '成都', 7000, 5500, '2021-03-16 00:18:21.000', 1, 112, 13, 7, 1, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
+INSERT INTO `position` VALUES (11, 'Python开发', '4年以上互联网产品后台研发经验，2年以上后台构架经验', 2, '贵阳', 10000, 5000, '2021-03-18 00:18:27.000', 1, 109, 13, 6, 1, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', '2022-03-19 16:10:29.000', '专科');
+INSERT INTO `position` VALUES (12, 'Python开发', '精通Python，2年或以上Python项目经验', 3, '贵阳', 9000, 4500, '2021-03-19 00:18:34.000', 1, 190, 13, 6, 6, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '本科');
+INSERT INTO `position` VALUES (13, '数据测试师', '熟悉 Linux平台上的编程环境，精通Java开发，精通 Python/Shell等脚本语言', 12, '贵阳', 9000, 6000, '2021-03-20 00:18:40.000', 1, 223, 5, 6, 6, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '本科');
+INSERT INTO `position` VALUES (14, '数据工程师', '熟悉Hadoop、Hive、Spark、流式计算、实时计算等大数据相关技术者优先，熟悉时序挖掘、文本挖掘、网络挖掘等优先', 2, '贵安新区', 6000, 3000, '2021-03-21 00:18:47.000', 1, 226, 5, 6, 6, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '本科');
+INSERT INTO `position` VALUES (15, '数据挖掘工程师', '精通Python，熟悉PHP/GO/Java/C++/C等语言中的一种或几种', 2, '贵阳', 9000, 5000, '2021-03-22 00:18:54.000', 1, 338, 5, 7, 6, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
 INSERT INTO `position` VALUES (16, 'Java工程师', '熟悉Spring、Freemark、Struts、Hibernate 等开源框架', 13, '北京', 9700, 8500, '2021-02-01 00:19:00.000', 1, 313, 1, 7, 2, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
-INSERT INTO `position` VALUES (17, 'Java后端开发', '熟练使用Mybatis，SpringMVC，SpringCloud等框架', 5, '广州', 7000, 5000, '2021-02-02 16:19:06.000', 1, 32, 1, 6, 1, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
+INSERT INTO `position` VALUES (17, 'Java后端开发', '熟练使用Mybatis，SpringMVC，SpringCloud等框架', 5, '广州', 7000, 5000, '2021-02-02 16:19:06.000', 1, 34, 1, 6, 1, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
 INSERT INTO `position` VALUES (18, 'C++后端开发', '熟练linux系统操作，熟练gcc,gdb,vim, eclipse等开发工具', 5, '深圳', 9000, 8000, '2021-02-16 16:19:12.000', 1, 61, 2, 6, 1, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
-INSERT INTO `position` VALUES (19, '后端开发', '熟悉后端开发技术', 5, '上海', 17000, 11000, '2022-03-21 13:18:05.594', 1, 9, 4, 6, 1, '2022-03-22 21:18:05.594', '2022-03-22 21:18:05.594', NULL, '本科');
-INSERT INTO `position` VALUES (20, '数据开发工程师', 'XXXXXXXXXXXXXXXXx', 5, '北京', 22000, 15000, '2022-04-24 18:38:16.177', 1, 2, 6, 6, 1, '2022-04-24 18:38:16.177', '2022-04-24 18:38:16.177', '2022-04-24 18:39:16.000', '本科');
-INSERT INTO `position` VALUES (22, '游戏开发工程师', '熟悉python基本操作,  能够使用pygame引擎进行游戏开发', 1, '贵阳', 15000, 10000, '2022-09-06 16:37:08.507', 0, 0, 13, 6, 1, '2022-09-06 16:37:08.507', '2022-09-06 16:37:08.507', NULL, '专科');
-INSERT INTO `position` VALUES (23, 'python游戏工程师', '熟练使用python,', 1, '贵州', 12000, 8000, '2022-09-06 16:44:11.974', 0, 0, 13, 6, 1, '2022-09-06 16:44:11.974', '2022-09-06 16:44:11.974', NULL, '专科');
-INSERT INTO `position` VALUES (24, '5G网络优化工程师\r\n', '1、通信、电子、软件及计算机相关专业全日制大专以上学历；\r\n2、获得CET-4或计算机二级证书优先；\r\n3、具备良好的沟通及协调能力，在校期间担任过学生干部及获得奖学金者优先；\r\n4、具备一定的计算机知识及熟悉office办公软件；\r\n5、学习能力及抗压能力强，服从公司安排，能适应出差工作。\r\n6、对通信行业有一定了解，愿意投身通信领域。\r\n工作职责1、主要对三大运营商的4/5G网络开展优化工作；\r\n2、使用通信软件及U2000网管进行数据分析与问题定位；\r\n3、日常道路测试分析、网络KPI指标优化与提升等。\r\n4、具备良好的沟通、协调能力，有创新优化思维，学生干部优先考虑。', 5, '贵阳', 5000, 4000, '2022-10-31 22:00:50.000', 0, 0, 14, 6, 1, '2022-10-31 22:02:37.952', '2022-10-31 22:02:37.952', NULL, '在校/应届.大专\r\n');
-INSERT INTO `position` VALUES (25, '4G/5G基站督导\r\n', '（1）负责通信设备的督导及维护工作，提供技术指导和支撑，必要时做示范安装；\r\n（2）做好无线设备的日常质检，及时处理设备故障问题，确保设备运行稳定；\r\n（3）负责无线基站的安装质量照片采集，做好基站设备安装过程中质量和安全把控。', 10, '贵阳', 4000, 2000, '2022-10-31 22:00:50.000', 0, 0, 14, 6, 1, '2022-10-31 22:02:37.952', '2022-10-31 22:02:37.952', NULL, '在校/应届.大专\r\n');
-INSERT INTO `position` VALUES (26, '网络运维实习生\r\n', '1、专科及以上（学信网可查）；\r\n2、有一定的网络基础知识，能够排查电脑系统基本使用故障；\r\n3、会装win7、win10的操作系统；\r\n4、较强的抗压能力，性格开朗，做事认真负责，有激情，有活力，有强烈的学习意愿。', 7, '贵阳', 150, 100, '2022-10-31 22:00:50.000', 0, 0, 15, 7, 2, '2022-10-31 22:02:37.952', '2022-10-31 22:02:37.952', NULL, '在校/应届.大专\r\n');
-INSERT INTO `position` VALUES (27, '5G网络优化工程师', '1、通信、电子、软件及计算机相关专业全日制大专以上学历；2、获得CET-4或计算机二级证书优先；3、具备良好的沟通及协调能力，在校期间担任过学生干部及获得奖学金者优先；4、具备一定的计算机知识及熟悉office办公软件；5、学习能力及抗压能力强，服从公司安排，能适应出差工作。6、对通信行业有一定了解，愿意投身通信领域。工作职责1、主要对三大运营商的4/5G网络开展优化工作；2、使用通信软件及U2000网管进行数据分析与问题定位；3、日常道路测试分析、网络KPI指标优化与提升等。4、具备良好的沟通、协调能力，有创新优化思维，学生干部优先考虑。', 5, '贵阳', 5000, 4000, '2021-04-01 00:17:19.000', 1, 121, 1, 6, 1, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
-INSERT INTO `position` VALUES (28, '4G/5G基站督导', '（1）负责通信设备的督导及维护工作，提供技术指导和支撑，必要时做示范安装；（2）做好无线设备的日常质检，及时处理设备故障问题，确保设备运行稳定；（3）负责无线基站的安装质量照片采集，做好基站设备安装过程中质量和安全把控。', 10, '贵阳', 4000, 2000, '2021-04-01 00:17:19.000', 1, 52, 1, 6, 1, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
-INSERT INTO `position` VALUES (29, '网络运维实习生', '1、专科及以上（学信网可查）；2、有一定的网络基础知识，能够排查电脑系统基本使用故障；3、会装win7、win10的操作系统；4、较强的抗压能力，性格开朗，做事认真负责，有激情，有活力，有强烈的学习意愿。', 7, '贵阳', 150, 100, '2021-04-01 00:17:19.000', 1, 13, 1, 6, 1, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
-INSERT INTO `position` VALUES (30, '运维工程师', '1.学历;大专及以上，计算机相关专业2.需要熟悉oracle数据库，能看懂程序包，能写嵌入查询Sql3.能分析基本日志，初步定为异常的能力4.了解Java语言，有开发编译能力优先5.了解前端页面数据异常参数定位方法6.性格外向，善于沟通和主动学习', 2, '贵阳', 170, 120, '2021-04-01 00:17:19.000', 1, 15, 1, 6, 1, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
-INSERT INTO `position` VALUES (31, '打字客服', '1、中专及其以上学历（优秀者可放宽要求）；2、普通话水平较好，电脑打字一分钟40字以上；3、具备亲和力，沟通表达欲望强，有良好的语言表述能力；4、会基本的电脑操作，能熟练操作PC机的基本软件（EXCEL、WORD）；5、应变能力强、有一定的抗压能力，懂的情绪控制能独立学习和提升。热爱集体、责任心强。', -5, '贵阳', 6000, 3000, '2021-04-01 00:17:19.000', 1, 31, 1, 6, 1, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
-INSERT INTO `position` VALUES (32, '配网设计助理', '对办公软件及绘图软件较为熟悉，包括电力系统、PPT、Excel、CAD等；可接受出差，有配网设计实习或相关工作经验的优先考虑。协助配网现场选线、选址工作，熟悉设计各阶段对内、外程序；协助完成台区、线路各卷册设计，协助处理现场问题。', 2, '贵州', 4000, 4, '2021-04-01 00:17:19.000', 1, 23, 1, 6, 1, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
-INSERT INTO `position` VALUES (33, '运维工程师', '1、负责机房服务响应，协助客户进行人员出入、设备上下架、设备搬迁、设备操作或其他服务需求；2、负责机房的日常运维管理，配合进行定期巡检工作并对安全性进行监控；3、对所管辖IDC机房的业务系统/客户设备进行巡检维护，对设备进行相关技术支持；4、负责识别处理机房与设备巡检中发现的事件及故障，记录事件及故障级别、通知相关人员、创建及更新告警事件记录表等工作，保障IDC运维工作的正常运行；5、协助IDC机房项目交付工作，负责客户入驻、扩容等项目的交付；6、负责项目交付过程或后期运维中的设备软硬件技术支持，如linux系统安装（centos、Ubuntu等）、系统配置（raid、bond、网卡绑定、idrac、系统故障排查等）。', 1, '安顺', 4000, 3000, '2021-04-01 00:17:19.000', 1, 13, 1, 6, 1, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
-INSERT INTO `position` VALUES (34, '在线打字客服', '1、中专及其以上学历（优秀者可放宽要求）；2、普通话水平较好，电脑打字一分钟40字以上；3、具备亲和力，沟通表达欲望强，有良好的语言表述能力；4、会基本的电脑操作，能熟练操作PC机的基本软件（EXCEL、WORD）；5、应变能力强、有一定的抗压能力，懂的情绪控制能独立学习和提升。热爱集体、责任心强。', 5, '贵阳', 6000, 3000, '2021-04-01 00:17:19.000', 1, 114, 1, 6, 1, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
-INSERT INTO `position` VALUES (35, '实施工程师', '1、计算机及相关专业，专科及以上学历（2022年毕业生也可）；2、熟悉Linux操作系统的常用命令；3、了解 Linux下中间件的应用配置和部署；4、良好的客户沟通和文档编写能力，能承受较强工作压力；5、能适应公司项目出差者优先考虑；6、有文档编写经验的更佳。', 1, '贵阳', 6000, 3000, '2021-04-01 00:17:19.000', 1, 118, 1, 6, 1, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
-INSERT INTO `position` VALUES (36, '数据库管理员\r\n', '1、大专及以上学历，电子商务、计算机或理工科相关专业；2、熟悉word、Excel、ppt等办公软件使用；3、熟练使用图表软件及分析工具。', 5, ' 贵', 15000, 10000, '2021-04-01 00:17:19.000', 1, 98, 1, 6, 1, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
-INSERT INTO `position` VALUES (37, '运行维护\r\n', '1.大学专科计算机或相近专业毕业。2.熟悉常见操作系统。3.具备团队协作精神，积极的工作态度、责任心，良好的沟通技巧及学习能力。', 3, '贵阳', 6000, 4000, '2021-04-01 00:17:19.000', 1, 124, 1, 6, 1, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
-INSERT INTO `position` VALUES (38, 'android应用开发工程师', '1.计算机或相关专业。2.熟悉Java程序设计，对面向对象的设计和开发有较深的理解；3.熟悉Android手机平台应用开发，有较强J2ME开发经验，熟悉J2ME绘制流程，熟悉内存优化，熟悉线程的使用；4.熟悉Socket网络编程，熟悉TCPIP,HTTP及xml等相关协议', 2, '贵阳', 9000, 4000, '2021-04-01 00:17:19.000', 1, 47, 1, 6, 1, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
-INSERT INTO `position` VALUES (39, '省医（盛意）月饼运营专员', '负责“贵州省人民医院职工食堂（盛意）月饼”和猕猴桃等水果销售渠道的建立及维护。', 4, '贵阳', 10000, 5000, '2021-04-01 00:17:19.000', 1, 95, 1, 6, 1, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
-INSERT INTO `position` VALUES (40, '健康顾问', '1、日常拜访客户，工作积极主动，吃苦耐劳，为人诚实、正直、沟通能力强；2、定期与合作客户进行沟通,建立良好的长期合作关系,实时把握客户需求,为客户提供主动、热情、满意、周到的服务；', 6, '贵阳', 10000, 6000, '2021-04-01 00:17:19.000', 1, 133, 1, 6, 1, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
-INSERT INTO `position` VALUES (41, '制片助理', '1、 负责与制片主任、编剧一起研究、改进剧本，并熟悉专业内容。2、 熟练掌握视觉原理、镜头组接原理和影视技术手段，负责写出分镜头剧本，作为节目制作的依据和蓝图。3、 负责与制片主任商订制作方式，订出拍摄计划，组建摄制组。4、 负责向摄像、灯光、美工设计、录音等方面制作人员交代意图，作导演阐述。给予各方面一定的工作建议，并一起商讨研究，批准他们各自的设计方案。5、 负责选派表演者，并在表演技能方面给予指导和示范。6、 负责外景选景工作和现场拍摄的指挥工人选并有较强的随机应变能力。负责指导编辑、配音、配乐等后期制作任务的完成。7、 和制片主任紧密合作，负责团结所有制作人员，集思广益，组织协调所有制作因素，保证顺利完成节目的制作任务。8、负责制片主任要求的其他事项', 1, '贵阳', 6000, 5000, '2021-04-01 00:17:19.000', 1, 39, 1, 6, 1, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
-INSERT INTO `position` VALUES (42, '实习生', '1、负责贵阳地区品牌Ai智慧学习电脑销售及日常运营；2、处理市场顾客的咨询，了解顾客的需求并达成销售；3、负责做好货品销售记录、盘点、账目核对等工作，按规定完成各项销售统计工作；4、完成上级领导交办的其他任务。', 3, '贵阳', 8000, 4000, '2021-04-01 00:17:19.000', 1, 52, 1, 6, 1, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
-INSERT INTO `position` VALUES (43, 'web前端开发工程师', '1、 精通Web前端技术，包括html、javascript、css，有良好的编码规范；2、 精通Vue、bootstrap、Jquery；3、熟悉会话保持、网页交互等技术；4、熟练使用DIV+CSS布局来编写自适应网页代码；5、对用户体验、交互操作流程、及用户需求有一定理解，对前端开发有浓厚兴趣；6、具备良好的审美能力，能主导UI美化最佳；7、具有较强的快速学习能力，具备独立解决问题能力；8、有强烈的进取心,对新技术、行业有钻研精神,具备良好的团队精神、表达能力、沟通能力和学习能力、对技术发展敏感，熟悉Android或IOS开发优先。', 2, '贵阳', 5000, 3000, '2021-04-01 00:17:19.000', 1, 95, 1, 6, 1, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
-INSERT INTO `position` VALUES (44, '文案策划', '1、 负责业务方案中创意文字的撰写及策划；　　2、 参与内部各项业务的策划、创意会；　　3、 参加客户的业务讨论、策划与创意提案会；　　4、 负责公司内部及与客户召开的各创意会议的（文字）记录；　　5、负责对提案和输出的文字及设计完成稿校对签字；      6、完成公司领导交给的其他工作任务。', 3, '贵阳', 6000, 4000, '2021-04-01 00:17:19.000', 1, 10, 1, 6, 1, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
-INSERT INTO `position` VALUES (45, '网络推广专员', '1、通过电话/微信等方式向学员介绍课程、成人学历教学优势等2、维护潜在的顾客以及学员；3、无需外出开发客户资源，仅针对意向学员；4、公司提供电话资源；（只做线上）', 5, '贵阳', 8000, 3000, '2021-04-01 00:17:19.000', 1, 155, 1, 6, 1, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
-INSERT INTO `position` VALUES (46, '运营实习生', '1、有强烈的事业心和责任感；2、具备良好的人际交往、社会活动能力及公关谈判能力；3、对工作有激情、执着、敬业, 思维清晰、活跃；4、较好的谈吐，形象好，气质佳；5、具有良好的团队协作精神，良好的协调、沟通和把握全局的能力；6、思维敏锐，极富创新精神，环境适应能力强，抗压力能力强。', 7, '贵阳', 6000, 3000, '2021-04-01 00:17:19.000', 1, 116, 1, 6, 1, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
-INSERT INTO `position` VALUES (47, '留学咨询部实习生', '1.普通话标准，学习能力强，思维敏捷；2.性格开朗外向，有激情；3.具备良好的沟通和表达能力；4.能吃苦耐劳，有责任心，认同新东方文化，服从管理；5.每周工作4-5天。6.尽快入职。【工作内容】', 6, '贵阳', 5000, 2000, '2021-04-01 00:17:19.000', 1, 47, 1, 6, 1, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
-INSERT INTO `position` VALUES (48, '室内设计师助理', '1、积极搜集整理各种素材，为项目提供创意；2、协助完成设计安排的其他工作；3、抗压能力强，团队意识强，执行能力强、服务意识强。', 2, '贵阳', 4000, 3000, '2021-04-01 00:17:19.000', 1, 53, 1, 6, 1, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
-INSERT INTO `position` VALUES (49, '机电学徒', '工作认真负责，有上进心，有一定汽车机械拆装经验', 2, '贵阳', 2000, 1000, '2021-04-01 00:17:19.000', 1, 47, 1, 6, 1, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
-INSERT INTO `position` VALUES (50, '后勤文员', '协助部门经理做好相关的后勤工作，人员关系，考勤管理以及领导安排的其他工作18-35岁之间，会基本的信息登记，掌握基本的办公室软件，有相关工作经历者优先考虑', 3, '贵阳', 5000, 4000, '2021-04-01 00:17:19.000', 1, 41, 1, 6, 1, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
-INSERT INTO `position` VALUES (51, '经理助理', '协助办公室主任完成公司行政事务工作及部门内部日常事务工作。', 1, '贵阳', 4000, 3000, '2021-04-01 00:17:19.000', 1, 126, 1, 6, 1, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
-INSERT INTO `position` VALUES (52, '实习生', '会计助理、财税实习生', 2, '广州', 2000, 1000, '2021-04-01 00:17:19.000', 1, 13, 1, 6, 1, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
-INSERT INTO `position` VALUES (53, '管理培训生', '学习酒店管理理念，收益管理，品牌维护，公共关系维持，简单的财务管理等酒店必须掌握的各项运营技能。并在学习过程中独当一面，成为门店经理。', 1, '厦门', 6000, 3000, '2021-04-01 00:17:19.000', 1, 121, 1, 6, 1, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
-INSERT INTO `position` VALUES (54, '实习生', '1、在制造部门通过对生产计划、生产、品质等岗位对产品进行熟悉；2、通过学习、培养能吃苦，有干劲、有想法做为后续的干部储备进行培养；3、要求服从安排，遵守公司相关制度。', 2, '深圳', 4000, 3000, '2021-04-01 00:17:19.000', 1, 75, 1, 6, 1, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
-INSERT INTO `position` VALUES (55, '实习生', '虚心肯学，有基础的设计概念，本专业或相关专业，对设计感兴趣。公司安排了培训，主要2个方向。1个方向是CAD施工图，另一个方向是SU建模，3DMax渲染。实习期3个月，第一个月学习量房，打框，施工图。第二个月学习效果图建模和渲染。第三个月根据自己的兴趣来确定以后在公司的定位及方向，并且巩固。', 4, '宁波', 2000, 1000, '2021-04-01 00:17:19.000', 1, 40, 1, 6, 1, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
-INSERT INTO `position` VALUES (56, '实训设计师', '1、要求会CAD操作；2、应届对口毕业生或相关专业者优先考虑；3、男女不限。', 2, '苏州', 6000, 3000, '2021-04-01 00:17:19.000', 1, 18, 1, 6, 1, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
-INSERT INTO `position` VALUES (57, '文员', '1、有一年以上文员或助理工作经验，2、熟悉电脑操作，能熟练使用excel、word、ppt等办公软件的操作为佳;3、对文件归档、工程/品质/生产等单位涉及的报表和相关数据统计工作流程与要求熟悉；4、有一年以上的文控工作经验更佳；5、工作认真，细心、责任心强，良好的沟通能力，具有一定抗压能力;6、服从上级领导的安排。', 4, '东莞', 4000, 3000, '2021-04-01 00:17:19.000', 1, 108, 1, 6, 1, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
+INSERT INTO `position` VALUES (19, '后端开发', '熟悉后端开发技术', 5, '上海', 17000, 11000, '2022-03-21 13:18:05.594', 1, 9, 4, 6, 3, '2022-03-22 21:18:05.594', '2022-03-22 21:18:05.594', NULL, '本科');
+INSERT INTO `position` VALUES (20, '数据开发工程师', 'XXXXXXXXXXXXXXXXx', 5, '北京', 22000, 15000, '2022-04-24 18:38:16.177', 1, 2, 6, 6, 4, '2022-04-24 18:38:16.177', '2022-04-24 18:38:16.177', '2022-04-24 18:39:16.000', '本科');
+INSERT INTO `position` VALUES (22, '游戏开发工程师', '熟悉python基本操作,  能够使用pygame引擎进行游戏开发', 1, '贵阳', 15000, 10000, '2022-09-06 16:37:08.507', 0, 0, 13, 6, 5, '2022-09-06 16:37:08.507', '2022-09-06 16:37:08.507', NULL, '专科');
+INSERT INTO `position` VALUES (23, 'python游戏工程师', '熟练使用python,', 1, '贵州', 12000, 8000, '2022-09-06 16:44:11.974', 0, 0, 13, 6, 6, '2022-09-06 16:44:11.974', '2022-09-06 16:44:11.974', NULL, '专科');
+INSERT INTO `position` VALUES (24, '5G网络优化工程师\r\n', '1、通信、电子、软件及计算机相关专业全日制大专以上学历；\r\n2、获得CET-4或计算机二级证书优先；\r\n3、具备良好的沟通及协调能力，在校期间担任过学生干部及获得奖学金者优先；\r\n4、具备一定的计算机知识及熟悉office办公软件；\r\n5、学习能力及抗压能力强，服从公司安排，能适应出差工作。\r\n6、对通信行业有一定了解，愿意投身通信领域。\r\n工作职责1、主要对三大运营商的4/5G网络开展优化工作；\r\n2、使用通信软件及U2000网管进行数据分析与问题定位；\r\n3、日常道路测试分析、网络KPI指标优化与提升等。\r\n4、具备良好的沟通、协调能力，有创新优化思维，学生干部优先考虑。', 5, '贵阳', 5000, 4000, '2022-10-31 22:00:50.000', 0, 0, 14, 6, 7, '2022-10-31 22:02:37.952', '2022-10-31 22:02:37.952', NULL, '在校/应届.大专\r\n');
+INSERT INTO `position` VALUES (25, '4G/5G基站督导\r\n', '（1）负责通信设备的督导及维护工作，提供技术指导和支撑，必要时做示范安装；\r\n（2）做好无线设备的日常质检，及时处理设备故障问题，确保设备运行稳定；\r\n（3）负责无线基站的安装质量照片采集，做好基站设备安装过程中质量和安全把控。', 10, '贵阳', 4000, 2000, '2022-10-31 22:00:50.000', 0, 0, 14, 6, 8, '2022-10-31 22:02:37.952', '2022-10-31 22:02:37.952', NULL, '在校/应届.大专\r\n');
+INSERT INTO `position` VALUES (26, '网络运维实习生\r\n', '1、专科及以上（学信网可查）；\r\n2、有一定的网络基础知识，能够排查电脑系统基本使用故障；\r\n3、会装win7、win10的操作系统；\r\n4、较强的抗压能力，性格开朗，做事认真负责，有激情，有活力，有强烈的学习意愿。', 7, '贵阳', 150, 100, '2022-10-31 22:00:50.000', 0, 0, 15, 7, 9, '2022-10-31 22:02:37.952', '2022-10-31 22:02:37.952', NULL, '在校/应届.大专\r\n');
+INSERT INTO `position` VALUES (27, '5G网络优化工程师', '1、通信、电子、软件及计算机相关专业全日制大专以上学历；2、获得CET-4或计算机二级证书优先；3、具备良好的沟通及协调能力，在校期间担任过学生干部及获得奖学金者优先；4、具备一定的计算机知识及熟悉office办公软件；5、学习能力及抗压能力强，服从公司安排，能适应出差工作。6、对通信行业有一定了解，愿意投身通信领域。工作职责1、主要对三大运营商的4/5G网络开展优化工作；2、使用通信软件及U2000网管进行数据分析与问题定位；3、日常道路测试分析、网络KPI指标优化与提升等。4、具备良好的沟通、协调能力，有创新优化思维，学生干部优先考虑。', 5, '贵阳', 5000, 4000, '2021-04-01 00:17:19.000', 1, 121, 14, 6, 10, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
+INSERT INTO `position` VALUES (28, '4G/5G基站督导', '（1）负责通信设备的督导及维护工作，提供技术指导和支撑，必要时做示范安装；（2）做好无线设备的日常质检，及时处理设备故障问题，确保设备运行稳定；（3）负责无线基站的安装质量照片采集，做好基站设备安装过程中质量和安全把控。', 10, '贵阳', 4000, 2000, '2021-04-01 00:17:19.000', 1, 52, 14, 6, 11, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
+INSERT INTO `position` VALUES (29, '网络运维实习生', '1、专科及以上（学信网可查）；2、有一定的网络基础知识，能够排查电脑系统基本使用故障；3、会装win7、win10的操作系统；4、较强的抗压能力，性格开朗，做事认真负责，有激情，有活力，有强烈的学习意愿。', 7, '贵阳', 150, 100, '2021-04-01 00:17:19.000', 1, 13, 15, 6, 12, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
+INSERT INTO `position` VALUES (30, '运维工程师', '1.学历;大专及以上，计算机相关专业2.需要熟悉oracle数据库，能看懂程序包，能写嵌入查询Sql3.能分析基本日志，初步定为异常的能力4.了解Java语言，有开发编译能力优先5.了解前端页面数据异常参数定位方法6.性格外向，善于沟通和主动学习', 2, '贵阳', 170, 120, '2021-04-01 00:17:19.000', 1, 15, 15, 6, 13, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
+INSERT INTO `position` VALUES (31, '打字客服', '1、中专及其以上学历（优秀者可放宽要求）；2、普通话水平较好，电脑打字一分钟40字以上；3、具备亲和力，沟通表达欲望强，有良好的语言表述能力；4、会基本的电脑操作，能熟练操作PC机的基本软件（EXCEL、WORD）；5、应变能力强、有一定的抗压能力，懂的情绪控制能独立学习和提升。热爱集体、责任心强。', -5, '贵阳', 6000, 3000, '2021-04-01 00:17:19.000', 1, 31, 17, 6, 14, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
+INSERT INTO `position` VALUES (32, '配网设计助理', '对办公软件及绘图软件较为熟悉，包括电力系统、PPT、Excel、CAD等；可接受出差，有配网设计实习或相关工作经验的优先考虑。协助配网现场选线、选址工作，熟悉设计各阶段对内、外程序；协助完成台区、线路各卷册设计，协助处理现场问题。', 2, '贵州', 4500, 4000, '2021-04-01 00:17:19.000', 1, 23, 17, 6, 15, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
+INSERT INTO `position` VALUES (33, '运维工程师', '1、负责机房服务响应，协助客户进行人员出入、设备上下架、设备搬迁、设备操作或其他服务需求；2、负责机房的日常运维管理，配合进行定期巡检工作并对安全性进行监控；3、对所管辖IDC机房的业务系统/客户设备进行巡检维护，对设备进行相关技术支持；4、负责识别处理机房与设备巡检中发现的事件及故障，记录事件及故障级别、通知相关人员、创建及更新告警事件记录表等工作，保障IDC运维工作的正常运行；5、协助IDC机房项目交付工作，负责客户入驻、扩容等项目的交付；6、负责项目交付过程或后期运维中的设备软硬件技术支持，如linux系统安装（centos、Ubuntu等）、系统配置（raid、bond、网卡绑定、idrac、系统故障排查等）。', 1, '安顺', 4000, 3000, '2021-04-01 00:17:19.000', 1, 13, 15, 6, 16, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
+INSERT INTO `position` VALUES (34, '在线打字客服', '1、中专及其以上学历（优秀者可放宽要求）；2、普通话水平较好，电脑打字一分钟40字以上；3、具备亲和力，沟通表达欲望强，有良好的语言表述能力；4、会基本的电脑操作，能熟练操作PC机的基本软件（EXCEL、WORD）；5、应变能力强、有一定的抗压能力，懂的情绪控制能独立学习和提升。热爱集体、责任心强。', 5, '贵阳', 6000, 3000, '2021-04-01 00:17:19.000', 1, 114, 16, 6, 17, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
+INSERT INTO `position` VALUES (35, '实施工程师', '1、计算机及相关专业，专科及以上学历（2022年毕业生也可）；2、熟悉Linux操作系统的常用命令；3、了解 Linux下中间件的应用配置和部署；4、良好的客户沟通和文档编写能力，能承受较强工作压力；5、能适应公司项目出差者优先考虑；6、有文档编写经验的更佳。', 1, '贵阳', 9000, 6000, '2021-04-01 00:17:19.000', 1, 118, 14, 6, 18, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
+INSERT INTO `position` VALUES (36, '数据库管理员\r\n', '1、大专及以上学历，电子商务、计算机或理工科相关专业；2、熟悉word、Excel、ppt等办公软件使用；3、熟练使用图表软件及分析工具。', 5, '贵阳', 15000, 10000, '2021-04-01 00:17:19.000', 1, 99, 15, 6, 19, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
+INSERT INTO `position` VALUES (37, '运行维护\r\n', '1.大学专科计算机或相近专业毕业。2.熟悉常见操作系统。3.具备团队协作精神，积极的工作态度、责任心，良好的沟通技巧及学习能力。', 3, '贵阳', 6000, 4000, '2021-04-01 00:17:19.000', 1, 124, 15, 6, 20, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
+INSERT INTO `position` VALUES (38, 'android应用开发工程师', '1.计算机或相关专业。2.熟悉Java程序设计，对面向对象的设计和开发有较深的理解；3.熟悉Android手机平台应用开发，有较强J2ME开发经验，熟悉J2ME绘制流程，熟悉内存优化，熟悉线程的使用；4.熟悉Socket网络编程，熟悉TCPIP,HTTP及xml等相关协议', 2, '贵阳', 9000, 4000, '2021-04-01 00:17:19.000', 1, 47, 4, 6, 21, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
+INSERT INTO `position` VALUES (39, '省医（盛意）月饼运营专员', '负责“贵州省人民医院职工食堂（盛意）月饼”和猕猴桃等水果销售渠道的建立及维护。', 4, '贵阳', 10000, 5000, '2021-04-01 00:17:19.000', 1, 96, 18, 6, 3, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
+INSERT INTO `position` VALUES (40, '健康顾问', '1、日常拜访客户，工作积极主动，吃苦耐劳，为人诚实、正直、沟通能力强；2、定期与合作客户进行沟通,建立良好的长期合作关系,实时把握客户需求,为客户提供主动、热情、满意、周到的服务；', 6, '贵阳', 10000, 6000, '2021-04-01 00:17:19.000', 1, 134, 20, 6, 4, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
+INSERT INTO `position` VALUES (41, '制片助理', '1、 负责与制片主任、编剧一起研究、改进剧本，并熟悉专业内容。2、 熟练掌握视觉原理、镜头组接原理和影视技术手段，负责写出分镜头剧本，作为节目制作的依据和蓝图。3、 负责与制片主任商订制作方式，订出拍摄计划，组建摄制组。4、 负责向摄像、灯光、美工设计、录音等方面制作人员交代意图，作导演阐述。给予各方面一定的工作建议，并一起商讨研究，批准他们各自的设计方案。5、 负责选派表演者，并在表演技能方面给予指导和示范。6、 负责外景选景工作和现场拍摄的指挥工人选并有较强的随机应变能力。负责指导编辑、配音、配乐等后期制作任务的完成。7、 和制片主任紧密合作，负责团结所有制作人员，集思广益，组织协调所有制作因素，保证顺利完成节目的制作任务。8、负责制片主任要求的其他事项', 1, '贵阳', 6000, 5000, '2021-04-01 00:17:19.000', 1, 39, 17, 6, 5, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
+INSERT INTO `position` VALUES (42, '实习生', '1、负责贵阳地区品牌Ai智慧学习电脑销售及日常运营；2、处理市场顾客的咨询，了解顾客的需求并达成销售；3、负责做好货品销售记录、盘点、账目核对等工作，按规定完成各项销售统计工作；4、完成上级领导交办的其他任务。', 3, '贵阳', 8000, 4000, '2021-04-01 00:17:19.000', 1, 52, 18, 6, 6, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
+INSERT INTO `position` VALUES (43, 'web前端开发工程师', '1、 精通Web前端技术，包括html、javascript、css，有良好的编码规范；2、 精通Vue、bootstrap、Jquery；3、熟悉会话保持、网页交互等技术；4、熟练使用DIV+CSS布局来编写自适应网页代码；5、对用户体验、交互操作流程、及用户需求有一定理解，对前端开发有浓厚兴趣；6、具备良好的审美能力，能主导UI美化最佳；7、具有较强的快速学习能力，具备独立解决问题能力；8、有强烈的进取心,对新技术、行业有钻研精神,具备良好的团队精神、表达能力、沟通能力和学习能力、对技术发展敏感，熟悉Android或IOS开发优先。', 2, '贵阳', 5000, 3000, '2021-04-01 00:17:19.000', 1, 95, 3, 6, 7, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
+INSERT INTO `position` VALUES (44, '文案策划', '1、 负责业务方案中创意文字的撰写及策划；　　2、 参与内部各项业务的策划、创意会；　　3、 参加客户的业务讨论、策划与创意提案会；　　4、 负责公司内部及与客户召开的各创意会议的（文字）记录；　　5、负责对提案和输出的文字及设计完成稿校对签字；      6、完成公司领导交给的其他工作任务。', 3, '贵阳', 6000, 4000, '2021-04-01 00:17:19.000', 1, 10, 17, 6, 8, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
+INSERT INTO `position` VALUES (45, '网络推广专员', '1、通过电话/微信等方式向学员介绍课程、成人学历教学优势等2、维护潜在的顾客以及学员；3、无需外出开发客户资源，仅针对意向学员；4、公司提供电话资源；（只做线上）', 5, '贵阳', 8000, 3000, '2021-04-01 00:17:19.000', 1, 155, 17, 6, 9, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
+INSERT INTO `position` VALUES (46, '运营实习生', '1、有强烈的事业心和责任感；2、具备良好的人际交往、社会活动能力及公关谈判能力；3、对工作有激情、执着、敬业, 思维清晰、活跃；4、较好的谈吐，形象好，气质佳；5、具有良好的团队协作精神，良好的协调、沟通和把握全局的能力；6、思维敏锐，极富创新精神，环境适应能力强，抗压力能力强。', 7, '贵阳', 6000, 3000, '2021-04-01 00:17:19.000', 1, 117, 17, 6, 10, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
+INSERT INTO `position` VALUES (47, '留学咨询部实习生', '1.普通话标准，学习能力强，思维敏捷；2.性格开朗外向，有激情；3.具备良好的沟通和表达能力；4.能吃苦耐劳，有责任心，认同新东方文化，服从管理；5.每周工作4-5天。6.尽快入职。【工作内容】', 6, '深圳', 5000, 3500, '2021-04-01 00:17:19.000', 1, 48, 17, 6, 11, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
+INSERT INTO `position` VALUES (48, '室内设计师助理', '1、积极搜集整理各种素材，为项目提供创意；2、协助完成设计安排的其他工作；3、抗压能力强，团队意识强，执行能力强、服务意识强。', 2, '成都', 6000, 4500, '2021-04-01 00:17:19.000', 1, 54, 17, 6, 12, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
+INSERT INTO `position` VALUES (49, '机电学徒', '工作认真负责，有上进心，有一定汽车机械拆装经验', 2, '贵阳', 2500, 1500, '2021-04-01 00:17:19.000', 1, 47, 18, 6, 13, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
+INSERT INTO `position` VALUES (50, '后勤文员', '协助部门经理做好相关的后勤工作，人员关系，考勤管理以及领导安排的其他工作18-35岁之间，会基本的信息登记，掌握基本的办公室软件，有相关工作经历者优先考虑', 3, '贵阳', 5000, 4000, '2021-04-01 00:17:19.000', 1, 41, 17, 6, 14, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
+INSERT INTO `position` VALUES (51, '经理助理', '协助办公室主任完成公司行政事务工作及部门内部日常事务工作。', 1, '贵阳', 4000, 3000, '2021-04-01 00:17:19.000', 1, 126, 17, 6, 15, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
+INSERT INTO `position` VALUES (52, '实习生', '会计助理、财税实习生', 2, '广州', 2000, 1000, '2021-04-01 00:17:19.000', 1, 13, 18, 6, 16, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
+INSERT INTO `position` VALUES (53, '管理培训生', '学习酒店管理理念，收益管理，品牌维护，公共关系维持，简单的财务管理等酒店必须掌握的各项运营技能。并在学习过程中独当一面，成为门店经理。', 1, '厦门', 6000, 3000, '2021-04-01 00:17:19.000', 1, 122, 18, 6, 17, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
+INSERT INTO `position` VALUES (54, '实习生', '1、在制造部门通过对生产计划、生产、品质等岗位对产品进行熟悉；2、通过学习、培养能吃苦，有干劲、有想法做为后续的干部储备进行培养；3、要求服从安排，遵守公司相关制度。', 2, '深圳', 4000, 3000, '2021-04-01 00:17:19.000', 1, 76, 18, 6, 18, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
+INSERT INTO `position` VALUES (55, '实习生', '虚心肯学，有基础的设计概念，本专业或相关专业，对设计感兴趣。公司安排了培训，主要2个方向。1个方向是CAD施工图，另一个方向是SU建模，3DMax渲染。实习期3个月，第一个月学习量房，打框，施工图。第二个月学习效果图建模和渲染。第三个月根据自己的兴趣来确定以后在公司的定位及方向，并且巩固。', 4, '宁波', 2000, 1500, '2021-04-01 00:17:19.000', 1, 42, 18, 6, 19, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
+INSERT INTO `position` VALUES (56, '实训设计师', '1、要求会CAD操作；2、应届对口毕业生或相关专业者优先考虑；3、男女不限。', 2, '苏州', 6000, 3000, '2021-04-01 00:17:19.000', 1, 19, 18, 6, 20, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
+INSERT INTO `position` VALUES (57, '文员', '1、有一年以上文员或助理工作经验，2、熟悉电脑操作，能熟练使用excel、word、ppt等办公软件的操作为佳;3、对文件归档、工程/品质/生产等单位涉及的报表和相关数据统计工作流程与要求熟悉；4、有一年以上的文控工作经验更佳；5、工作认真，细心、责任心强，良好的沟通能力，具有一定抗压能力;6、服从上级领导的安排。', 4, '东莞', 4000, 3000, '2021-04-01 00:17:19.000', 1, 108, 17, 6, 21, '2021-05-01 18:12:13.409', '2021-05-01 18:12:13.409', NULL, '专科');
 
 -- ----------------------------
 -- Table structure for project
@@ -770,7 +781,7 @@ CREATE TABLE `resume`  (
   `update_time` datetime(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3) COMMENT '更新时间',
   `delete_time` datetime(3) DEFAULT NULL COMMENT '删除时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of resume
@@ -778,7 +789,7 @@ CREATE TABLE `resume`  (
 INSERT INTO `resume` VALUES (1, 4, '熟悉Java编程，掌握常用数据结构与算法，对计算机网络和操作系统有所了解\n\n', '英语四级', 0, 25, '广东中山', '善于沟通，喜欢通过博客来总结学过的知识点', 'Java开发', '2021-05-01 18:28:11.929', '2021-05-01 18:28:11.929', NULL);
 INSERT INTO `resume` VALUES (2, 5, '熟悉C++编程，了解数据结构和算法', '英语六级', 1, 23, '广东深圳', '热爱生活、热爱运动、热爱编程', 'C++开发', '2021-05-02 15:21:50.560', '2021-05-02 15:21:50.560', NULL);
 INSERT INTO `resume` VALUES (10, 9, '1)C/C++/Java; Linux/Unix Shell编程；  2)Perl/Python/PHP; 网络技术及相应的开发；  3)JavaScript/Html/Ajax；MySql/Oracle及相关数据库技术。', 'CET-4', 0, 26, '广东广州', '1、热爱互联网，对互联网相关业务或技术充满好奇及热情； 2、快速的产品及业务学习能力，敏捷而周到的逻辑思维能力；  3、有责任心，敢于担当，工作积极主动；', '测试工程师', '2022-03-26 18:11:43.014', '2022-03-26 18:11:43.014', NULL);
-INSERT INTO `resume` VALUES (11, 17, '掌握java语言', '10级', 0, 18, '贵阳', '123', 'web开发', '2022-09-01 19:33:08.785', '2022-09-01 19:33:08.785', NULL);
+INSERT INTO `resume` VALUES (11, 17, '掌握java, python, javascript,typescript, C# ,c 易语言,  熟练使用vue, jquery,等框架', '10级', 0, 20, '贵阳', '时间如梭，一晃一学年就过去了。怀着对大学的憧憬，我除了努力完成自己的学习目标，也利用各种活动丰富自己的生活，摆脱现在大学生最流行的郁闷日子。现将我上一学年的生活总结如下：\n\n　　一、在学习。学习是学生的基本，我知道一个受社会肯定的优秀大学生，除了有个性有特长外，最起码的就是要有知识文化的功底，所以，我至始至终都把学习摆在第一位这个学期开的课不多，正因为这样，只有珍惜每一节文化课，坚决不迟到不早退不旷课，才对得住自己的大学生涯！\n\n　　二、在生活上，我基本上都可以和同学们友好相处，和睦共处，互帮互爱，自己的事情自己做，形成独立自理自立的良好品德。宿舍是一个大集体，八个人生活在同一个空间里面，但是各自的生活习性都不相，这就需要大家互相理解和迁就，只有这样才能和平相处，为我们的学习创造一个良好的学习和休息环境。大学就相当于一个小型的社会，作为一个步入社会的缓冲，我们可以从中学到好多的东西。\n\n　　三、在娱乐上，我上学年积极参加各方组织的各项活动。比如班级间的友好篮球赛，排球赛，学校的迎新晚会，班级辩论赛等等。通过参加有些活动，我的眼界开阔了许多，认识到了许多东西；而有些，则使我更加了解、热爱我们的学校、班级，加强了集体观念！\n\n　　在上一学年里，我学到了太多的东西。这是我在以后生活、工作中所必需的。我感谢大学里相对这么宽松的自由学习环境，给了我这么多的自由伸展的空间。尽管如此，我在大一学年里还是存在许多不足，其中不按作息行动、学习最为严重，在这一学年我要严格自己，重新调整好自己的生物钟。同时我还要注意多锻炼身体，身体是本钱。只有兼备两者，才能有更高的学习效率，从而腾出的时间干的事情，才能消除大一时的“心有余力而力不足”！\n\n　　总结回顾：我百感交集；面对未来我信心百倍；展望明天，我任重道远！我想：既然上帝让我们都能自己掌握自己的命运，那么我就一定要并且也能掌握好我的命运。我的大学将会因为我的不断回顾和展望而更加无怨无悔！', 'web开发', '2022-09-01 19:33:08.785', '2022-09-01 19:33:08.785', NULL);
 
 -- ----------------------------
 -- Table structure for user
@@ -797,20 +808,20 @@ CREATE TABLE `user`  (
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `username_del`(`username`, `delete_time`) USING BTREE,
   UNIQUE INDEX `email_del`(`email`, `delete_time`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 104 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 105 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
 INSERT INTO `user` VALUES (1, 'root', '超级管理员', NULL, '2416871211@qq.com', '13538384290', '2021-03-14 14:49:21', '2022-09-29 11:25:56', NULL);
-INSERT INTO `user` VALUES (4, 'user', '刘同学', NULL, 'user@qq.com', '13766666666', '2021-04-16 02:02:05', '2022-09-29 11:25:56', NULL);
-INSERT INTO `user` VALUES (5, 'user1', '李同学', NULL, 'user1@qq.com', '13555555555', '2021-04-16 02:02:33', '2022-09-29 11:25:56', NULL);
-INSERT INTO `user` VALUES (6, 'hr', '陈经理', NULL, 'hr@qq.com', '13090908756', '2021-04-16 02:02:48', '2022-10-31 21:57:51', NULL);
-INSERT INTO `user` VALUES (7, 'hr1', '郑经理', NULL, 'hr1@qq.com', '13433339999', '2021-04-16 02:03:10', '2022-09-29 11:25:56', NULL);
+INSERT INTO `user` VALUES (4, 'user', '刘同学', NULL, '2378071773@qq.com', '18584786902', '2021-04-16 02:02:05', '2022-11-03 17:45:13', NULL);
+INSERT INTO `user` VALUES (5, 'user1', '李同学', NULL, '3263389764@qq.com', '13985129772', '2021-04-16 02:02:33', '2022-11-03 17:45:25', NULL);
+INSERT INTO `user` VALUES (6, 'hr', '陈经理', NULL, '2278352171@qq.com', '13090908756', '2021-04-16 02:02:48', '2022-11-03 17:45:35', NULL);
+INSERT INTO `user` VALUES (7, 'hr1', '郑经理', NULL, '2717540678@qq.com', '18768674476', '2021-04-16 02:03:10', '2022-11-03 17:45:48', NULL);
 INSERT INTO `user` VALUES (8, 'admin', '平台管理员', NULL, 'admin@qq.com', '13768685959', '2021-04-16 02:03:27', '2022-09-29 11:25:56', NULL);
-INSERT INTO `user` VALUES (9, 'user2', '蓝同学', NULL, 'user2@qq.com', '13655555555', '2021-05-02 15:28:53', '2022-09-29 11:25:56', NULL);
-INSERT INTO `user` VALUES (13, 'sysadmin', '系统管理员', NULL, '123@123.com', '13860600000', '2022-03-22 23:28:57', '2022-09-29 11:25:56', NULL);
-INSERT INTO `user` VALUES (17, 'eval', 'eval', NULL, '123@123.com', '13860600000', '2022-03-22 23:28:57', '2022-09-29 11:25:56', NULL);
+INSERT INTO `user` VALUES (9, 'user2', '蓝同学', NULL, '2873550863@qq.com', '19885601336', '2021-05-02 15:28:53', '2022-11-03 17:46:00', NULL);
+INSERT INTO `user` VALUES (13, 'sysadmin', '系统管理员', NULL, '2948513479@qq.com', '13078502065', '2022-03-22 23:28:57', '2022-11-03 17:46:11', NULL);
+INSERT INTO `user` VALUES (17, 'eval', '张三', NULL, '2468520483@qq.com', '16687862330', '2022-03-22 23:28:57', '2022-11-03 17:45:03', NULL);
 
 -- ----------------------------
 -- Table structure for user_group
@@ -822,7 +833,7 @@ CREATE TABLE `user_group`  (
   `group_id` int unsigned NOT NULL COMMENT '分组id',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `user_id_group_id`(`user_id`, `group_id`) USING BTREE COMMENT '联合索引'
-) ENGINE = InnoDB AUTO_INCREMENT = 70 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 71 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user_group
@@ -859,7 +870,7 @@ CREATE TABLE `user_identity`  (
   `update_time` datetime(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
   `delete_time` datetime(3) DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 37 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 38 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user_identity

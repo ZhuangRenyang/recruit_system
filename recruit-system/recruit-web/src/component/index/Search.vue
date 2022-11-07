@@ -27,6 +27,9 @@
 						<div>
 							热门职位搜索：
 							<span class="s_hot_like" v-if="recommendList.length">
+								<span @click="searchPositionList()">
+									全部<span class="hot_before"></span>
+								</span>
 								<span @click="searchPositionList(item.key_word)" v-for="(item,index) in recommendList" :key="index" :title="item.description">
 									{{item.name}}
 									<span class="hot_before"></span>

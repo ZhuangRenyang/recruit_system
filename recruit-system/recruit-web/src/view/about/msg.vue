@@ -29,7 +29,6 @@
 						<div v-if="selectInfo.msg.length>0">
 							<div class="msg-item" v-for="(item,index) in selectInfo.msg" :key="index">
 								<div :class="item.type">
-									<!-- <img  class="birth-anim" :src="me.avatar" v-if="item.type=='this'"> -->
 									<img  :src="me.avatar ? me.avatar : defaultImg" v-if="item.type=='this'">
 									<img  :src="selectInfo.icon" v-else>
 									<span v-html="item.text"></span>
@@ -222,12 +221,10 @@ export default{
 								this.$set(this.chatInfo[info[i]],"online",true)
 							}
 						}
-						
 					}
 
 					this.moeScroll();
 				}
-
 			}
 		},
 		moeScroll(time=200){
@@ -279,6 +276,7 @@ export default{
 				}
 				return
 			}
+	
 			let friends_list = ""
 			for (const iterator in friends) {
 				if (parseInt(iterator) >0){
@@ -293,7 +291,7 @@ export default{
 	},
 	async mounted() {
 		// this.$message.closeAll();
-						this.hartCheck(this.chatInfo)
+		// this.hartCheck(this.chatInfo);
 		this.me = store.getters.user;
 		this.token_msg = {
 			id:this.me.id,
@@ -305,8 +303,8 @@ export default{
 			type:"contact",
 			time:new Date().toLocaleString()
 		}
-		// 默认都有一个消息
-		this.chatInfo["-1"] = this.packMsg(-1,"校企直聘智能机","sys",new Date().toLocaleString(),require("@/assets/image/user/Cat.png")
+		// 默认有2个消息
+		this.chatInfo["-1"] = this.packMsg("-1","校企直聘智能机","sys",new Date().toLocaleString(),require("@/assets/image/user/Cat.png")
 			,[{"type":"sys","text":"\
 				<div class='sys-msg'>\
 					<h2>登录操作通知</h2>\
@@ -331,7 +329,8 @@ export default{
 					</div>\
 				</div>\
 			",time:new Date().toLocaleString()}],"登录操作通知",1)
-		
+
+		this.chatInfo["1"] = this.packMsg("1","系统管理员","alone",new Date().toLocaleString(),require("@/assets/image/user/Cat.png"),[{"type":"target","text":"反馈请留言",time:new Date().toLocaleString()}],"",1)
 		this.selectInfo = this.chatInfo["-1"];
 		if(this.$ws.ws.readyState!=1)return;
 	 	await this.recvMsg();
