@@ -11,7 +11,7 @@
  Target Server Version : 80025
  File Encoding         : 65001
 
- Date: 07/11/2022 23:17:47
+ Date: 08/11/2022 16:32:08
 */
 
 SET NAMES utf8mb4;
@@ -813,15 +813,15 @@ CREATE TABLE `user`  (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (1, 'root', '超级管理员', NULL, '2416871211@qq.com', '13538384290', '2021-03-14 14:49:21', '2022-09-29 11:25:56', NULL);
-INSERT INTO `user` VALUES (4, 'user', '刘同学', NULL, '2378071773@qq.com', '18584786902', '2021-04-16 02:02:05', '2022-11-03 17:45:13', NULL);
-INSERT INTO `user` VALUES (5, 'user1', '李同学', NULL, '3263389764@qq.com', '13985129772', '2021-04-16 02:02:33', '2022-11-03 17:45:25', NULL);
-INSERT INTO `user` VALUES (6, 'hr', '陈经理', NULL, '2278352171@qq.com', '13090908756', '2021-04-16 02:02:48', '2022-11-03 17:45:35', NULL);
-INSERT INTO `user` VALUES (7, 'hr1', '郑经理', NULL, '2717540678@qq.com', '18768674476', '2021-04-16 02:03:10', '2022-11-03 17:45:48', NULL);
-INSERT INTO `user` VALUES (8, 'admin', '平台管理员', NULL, 'admin@qq.com', '13768685959', '2021-04-16 02:03:27', '2022-09-29 11:25:56', NULL);
-INSERT INTO `user` VALUES (9, 'user2', '蓝同学', NULL, '2873550863@qq.com', '19885601336', '2021-05-02 15:28:53', '2022-11-03 17:46:00', NULL);
-INSERT INTO `user` VALUES (13, 'sysadmin', '系统管理员', NULL, '2948513479@qq.com', '13078502065', '2022-03-22 23:28:57', '2022-11-03 17:46:11', NULL);
-INSERT INTO `user` VALUES (17, 'eval', '张三', NULL, '2468520483@qq.com', '16687862330', '2022-03-22 23:28:57', '2022-11-03 17:45:03', NULL);
+INSERT INTO `user` VALUES (1, 'root', '超级管理员', NULL, 'admin@qq.com', '12312312312', '2021-03-14 14:49:21', '2022-11-08 16:30:43', NULL);
+INSERT INTO `user` VALUES (4, 'user', '刘同学', NULL, 'admin@qq.com', '12312312312', '2021-04-16 02:02:05', '2022-11-08 16:30:43', NULL);
+INSERT INTO `user` VALUES (5, 'user1', '李同学', NULL, 'admin@qq.com', '12312312312', '2021-04-16 02:02:33', '2022-11-08 16:30:43', NULL);
+INSERT INTO `user` VALUES (6, 'hr', '陈经理', NULL, 'admin@qq.com', '12312312312', '2021-04-16 02:02:48', '2022-11-08 16:30:43', NULL);
+INSERT INTO `user` VALUES (7, 'hr1', '郑经理', NULL, 'admin@qq.com', '12312312312', '2021-04-16 02:03:10', '2022-11-08 16:30:43', NULL);
+INSERT INTO `user` VALUES (8, 'admin', '平台管理员', NULL, 'admin@qq.com', '12312312312', '2021-04-16 02:03:27', '2022-11-08 16:30:43', NULL);
+INSERT INTO `user` VALUES (9, 'user2', '蓝同学', NULL, 'admin@qq.com', '12312312312', '2021-05-02 15:28:53', '2022-11-08 16:30:43', NULL);
+INSERT INTO `user` VALUES (13, 'sysadmin', '系统管理员', NULL, 'admin@qq.com', '12312312312', '2022-03-22 23:28:57', '2022-11-08 16:30:43', NULL);
+INSERT INTO `user` VALUES (17, 'eval', '张三', NULL, 'admin@qq.com', '12312312312', '2022-03-22 23:28:57', '2022-11-08 16:30:43', NULL);
 
 -- ----------------------------
 -- Table structure for user_group
