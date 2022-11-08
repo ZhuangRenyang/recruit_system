@@ -2,6 +2,10 @@
 ### `介绍`
 毕设项目: 校企招聘   
 
+[原作者地址](https://gitee.com/koengman/resume?_from=gitee_search) 
+
+根据此项目的基础上修改了部分内容,  
+
 ### `软件架构`
 采用前后端分离技术
 前端使用vue + ElementUI 
