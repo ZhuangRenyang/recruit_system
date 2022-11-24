@@ -9,7 +9,6 @@ spring:
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://172.17.0.1:3306/recruit_system?useSSL=false&serverTimezone=UTC&characterEncoding=UTF8&allowPublicKeyRetrieval=true
     url: jdbc:mysql://127.0.0.1:3306/recruit_system?useSSL=false&serverTimezone=UTC&characterEncoding=UTF8&allowPublicKeyRetrieval=true
 
 
