@@ -7,8 +7,8 @@
         <div class="info">
           <div class="info_left_img">
             <el-avatar :size="120"><img :src="avatar ? avatar : defaultImg" size="120" class="aa"></el-avatar>
-            <!-- <el-avatar :size="120" :src="avatar"></el-avatar> -->
-            
+<!--             <el-avatar :size="120" :src="avatar"></el-avatar>-->
+
           </div>
           <div class="info-right">
             <div class="info_name">
@@ -231,6 +231,7 @@ export default {
       },
       defaultImg: require("@/assets/image/user/user.png")
     };
+
   },
   async mounted() {
     try {
@@ -277,7 +278,7 @@ export default {
         context.drawImage(image, 0, 0, image.width, image.height);
         var quality = 0.8;
         //这里的dataurl就是base64类型
-        var dataURL = canvas.toDataURL("image/jpeg", quality);//使用toDataUrl将图片转换成jpeg的格式,不要把图片压缩成png，因为压缩成png后base64的字符串可能比不转换前的长！          
+        var dataURL = canvas.toDataURL("image/jpeg", quality);//使用toDataUrl将图片转换成jpeg的格式,不要把图片压缩成png，因为压缩成png后base64的字符串可能比不转换前的长！
         that.avatar = dataURL
       }
     },
@@ -310,10 +311,11 @@ export default {
     },
     async updataInfo(nowid) {
       try {
-        const res = await Resume.getById(nowid)
+        const res = await Resume.getById(nowid)//获取当前用户信息
         // console.log(res)
         this.ability.descriptions = res.ability,
-          this.avatar = res.avatar,
+          this.avatar = 'http://localhost:5000/assets/'+res.avatar,//跨域问题用了5000端口代替
+          // console.log('当前图片路径'+this.avatar)
           this.educations = res.educations,
           this.experiences = res.experiences,
           this.projects = res.projects,

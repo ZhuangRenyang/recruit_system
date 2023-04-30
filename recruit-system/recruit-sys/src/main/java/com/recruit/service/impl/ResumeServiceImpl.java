@@ -42,6 +42,7 @@ public class ResumeServiceImpl extends ServiceImpl<ResumeMapper, ResumeDO> imple
     @Resource
     private ExperienceMapper experienceMapper;
 
+    //根据用户Id获取用户简历信息
     @Override
     public ResumeVO getByUserId(Integer userId) {
         LambdaQueryWrapper<ResumeDO> queryWrapper = new LambdaQueryWrapper<ResumeDO>();

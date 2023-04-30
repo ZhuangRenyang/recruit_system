@@ -9,7 +9,7 @@
         <result column="group_id" property="groupId"/>
     </resultMap>
 
-    <insert id="insertBatch">
+    <insert id="insertBatch" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO `user_group`(user_id, group_id)
         VALUES
         <foreach collection="relations" item="relation" separator=",">

@@ -267,7 +267,7 @@ INSERT INTO `favor` VALUES (33, 17, 17, '2022-10-27 16:45:57.881', '2022-10-27 1
 -- ----------------------------
 DROP TABLE IF EXISTS `file`;
 CREATE TABLE `file`  (
-  `id` int unsigned NOT NULL,
+  `id` int(20) unsigned NOT NULL AUTO_INCREMENT,
   `path` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `type` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'LOCAL' COMMENT 'LOCAL 本地，REMOTE 远程',
   `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
@@ -368,7 +368,7 @@ INSERT INTO `follow` VALUES (6, 1, 19, '2022-03-21 10:29:01.954', '2022-03-21 10
 -- ----------------------------
 DROP TABLE IF EXISTS `group`;
 CREATE TABLE `group`  (
-  `id` int unsigned NOT NULL,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '分组名称，例如：搬砖者',
   `info` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '分组信息：例如：搬砖的人',
   `level` tinyint(0) NOT NULL DEFAULT 3 COMMENT '分组级别 1：root 2：guest 3：user  root（root、guest分组只能存在一个)',
@@ -393,7 +393,7 @@ INSERT INTO `group` VALUES (5, 'sysadmin(系统管理员)', '系统管理员', 3
 -- ----------------------------
 DROP TABLE IF EXISTS `group_permission`;
 CREATE TABLE `group_permission`  (
-  `id` int unsigned NOT NULL,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
   `group_id` int unsigned NOT NULL COMMENT '分组id',
   `permission_id` int unsigned NOT NULL COMMENT '权限id',
   PRIMARY KEY (`id`) USING BTREE,
@@ -532,7 +532,7 @@ INSERT INTO `interview` VALUES (11, 10, 9, 1, 12, 6, NULL, NULL, NULL, 0, NULL, 
 -- ----------------------------
 DROP TABLE IF EXISTS `log`;
 CREATE TABLE `log`  (
-  `id` int unsigned NOT NULL,
+  `id` int(255) unsigned NOT NULL AUTO_INCREMENT,
   `message` varchar(450) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `user_id` int unsigned NOT NULL,
   `username` varchar(24) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
@@ -589,7 +589,7 @@ INSERT INTO `notify` VALUES (28, '阿里巴巴发布了职位——Python开发�
 -- ----------------------------
 DROP TABLE IF EXISTS `permission`;
 CREATE TABLE `permission`  (
-  `id` int unsigned NOT NULL,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '权限名称，例如：访问首页',
   `module` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '权限所属模块，例如：人员管理',
   `mount` tinyint(1) NOT NULL DEFAULT 1 COMMENT '0：关闭 1：开启',
@@ -795,8 +795,8 @@ INSERT INTO `resume` VALUES (11, 17, '掌握java, python, javascript,typescript,
 -- Table structure for user
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
-CREATE TABLE `user`  (
-  `id` int unsigned NOT NULL,
+CREATE TABLE `user` (
+   `id` int(255) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(24) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '用户名，唯一',
   `nickname` varchar(24) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '用户昵称',
   `avatar` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '头像url',
@@ -828,9 +828,9 @@ INSERT INTO `user` VALUES (17, 'eval', '张三', NULL, 'admin@qq.com', '12312312
 -- ----------------------------
 DROP TABLE IF EXISTS `user_group`;
 CREATE TABLE `user_group`  (
-  `id` int unsigned NOT NULL,
-  `user_id` int unsigned NOT NULL COMMENT '用户id',
-  `group_id` int unsigned NOT NULL COMMENT '分组id',
+   `id` int(255) UNSIGNED NOT NULL AUTO_INCREMENT,
+   `user_id` int(255) UNSIGNED NOT NULL COMMENT '用户id',
+   `group_id` int(255) UNSIGNED NOT NULL COMMENT '分组id',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `user_id_group_id`(`user_id`, `group_id`) USING BTREE COMMENT '联合索引'
 ) ENGINE = InnoDB AUTO_INCREMENT = 71 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
@@ -861,8 +861,8 @@ INSERT INTO `user_group` VALUES (23, 17, 2);
 -- ----------------------------
 DROP TABLE IF EXISTS `user_identity`;
 CREATE TABLE `user_identity`  (
-  `id` int unsigned NOT NULL,
-  `user_id` int unsigned NOT NULL COMMENT '用户id',
+  `id` int(255) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) unsigned NOT NULL COMMENT '用户id',
   `identity_type` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `identifier` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `credential` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,

@@ -25,9 +25,9 @@ spring:
     #服务主机  qq邮箱为smtp.qq.com
     host: smtp.qq.com
     #发送邮件的账户
-    username: ""
+    username: "996491835@qq.com"
     #授权码
-    password: "" # 授权码
+    password: "rbszdvttluzabeba" # 授权码
     #服务协议
     protocol: smtp
     # 编码集

@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.recruit.common.observer.user.user;
 import com.recruit.service.*;
 import com.recruit.vo.CreatedVO;
 import io.github.talelin.autoconfigure.exception.FailedException;
@@ -24,6 +25,7 @@ import com.recruit.model.GroupDO;
 import com.recruit.model.PermissionDO;
 import com.recruit.model.UserDO;
 import com.recruit.model.UserGroupDO;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,6 +37,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class UserServiceImpl extends ServiceImpl<UserMapper, UserDO> implements UserService {
 
     @Resource
@@ -58,6 +61,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDO> implements 
     @Transactional
     @Override
     public UserDO createUser(RegisterDTO dto) {
+        log.info("注册数据:{}",dto);
         boolean exist = this.checkUserExistByUsername(dto.getUsername());
         if (exist) {
             throw new ForbiddenException(10071);
@@ -73,10 +77,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDO> implements 
             dto.setEmail(null);
         }
         UserDO user = new UserDO();
-        BeanUtil.copyProperties(dto, user);
 
+        BeanUtil.copyProperties(dto, user);
+        log.info("用户id:{},用户名称:{},用户全部信息:{}",user.getId(),user.getUsername(),user);
         this.baseMapper.insert(user);
         if (dto.getGroupIds() != null && !dto.getGroupIds().isEmpty()) {
+            log.info("------------------dto.getGroupIds() != null && !dto.getGroupIds().isEmpty()");
             checkGroupsValid(dto.getGroupIds());
             checkGroupsExist(dto.getGroupIds());
             List<UserGroupDO> relations = dto.getGroupIds()
@@ -86,6 +92,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDO> implements 
             userGroupMapper.insertBatch(relations);
         } else {
             // id为2的分组为游客分组
+            log.info("id为2的分组为游客分组");
             Integer guestGroupId = groupService.getParticularGroupIdByLevel(GroupLevelEnum.GUEST);
             UserGroupDO relation = new UserGroupDO(user.getId(), guestGroupId);
             userGroupMapper.insert(relation);

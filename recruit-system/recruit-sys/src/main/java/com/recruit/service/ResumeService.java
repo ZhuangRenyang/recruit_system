@@ -15,6 +15,7 @@ import com.recruit.vo.ResumeVO;
  */
 public interface ResumeService extends IService<ResumeDO> {
 
+    //获取用户简历信息
     ResumeVO getByUserId(Integer userId);
 
     boolean createResume(CreateOrUpdateResumeDTO validator);

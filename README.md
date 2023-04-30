@@ -90,3 +90,120 @@ Redis 实现定时任务
 > 修复发送聊天内容时,头像获取异常的bug
 >
 > 将连接聊天服务器(ws)的 连接方式修改为配置文件项
+
+```
+# 消息码配置文件
+# 格式：消息码 -> 消息
+code-message[0]=成功
+code-message[1]=创建成功
+code-message[2]=更新成功
+code-message[3]=删除成功
+code-message[4]=密码修改成功
+code-message[5]=删除用户成功
+code-message[6]=更新用户成功
+code-message[7]=更新分组成功
+code-message[8]=删除分组成功
+code-message[9]=添加权限成功
+code-message[10]=删除权限成功
+code-message[11]=注册成功
+code-message[15]=新建分组成功
+code-message[9999]=服务器未知错误
+code-message[10000]=未携带令牌
+code-message[10001]=权限不足
+code-message[10010]=授权失败
+code-message[10011]=更新密码失败
+code-message[10012]=请传入认证头字段
+code-message[10013]=认证头字段解析失败
+code-message[10020]=资源不存在
+code-message[10021]=用户不存在
+code-message[10023]=分组不存在，无法新建用户
+code-message[10024]=分组不存在
+code-message[10025]=找不到相应的视图处理器
+code-message[10026]=未找到文件
+code-message[10030]=参数错误
+code-message[10031]=用户名或密码错误
+code-message[10032]=请输入正确的密码
+code-message[10040]=令牌失效
+code-message[10041]=access token 损坏
+code-message[10042]=refresh token 损坏
+code-message[10050]=令牌过期
+code-message[10051]=access token 过期
+code-message[10052]=refresh token 过期
+code-message[10060]=字段重复
+code-message[10070]=禁止操作
+code-message[10071]=已经有用户使用了该名称，请重新输入新的用户名
+code-message[10072]=分组名已被使用，请重新填入新的分组名
+code-message[10073]=root分组不可添加用户
+code-message[10074]=root分组不可删除
+code-message[10075]=guest分组不可删除
+code-message[10076]=邮箱已被使用，请重新填入新的邮箱
+code-message[10077]=不可将用户分配给不存在的分组
+code-message[10078]=不可修改root用户的分组
+code-message[10080]=请求方法不允许
+code-message[10100]=刷新令牌获取失败
+code-message[10110]=文件体积过大
+code-message[10120]=文件数量过多
+code-message[10121]=文件太多，文件总数不可超过${file.nums}
+code-message[10130]=文件扩展名不符合规范
+code-message[10140]=请求过于频繁，请稍后重试
+code-message[10150]=丢失参数
+code-message[10160]=类型错误
+code-message[10170]=请求体不可为空
+code-message[10180]=全部文件大小不能超过
+code-message[10190]=读取文件数据失败
+
+code-message[1000]=创建简历成功
+code-message[1010]=简历更新成功
+code-message[20000]=创建简历失败
+code-message[20010]=还未创建简历，请先完成简历的创建
+code-message[20020]=简历不存在
+
+code-message[1100]=新增关注成功
+code-message[1200]=取消关注成功
+code-message[21000]=并未关注该公司
+code-message[22000]=该用户并未关注任何公司
+code-message[23000]=该用户并未关注该公司
+code-message[24000]=已经关注过该公司，不可重复关注
+
+code-message[3000]=更新公司信息成功，请等待管理员审核
+code-message[3100]=更新公司状态成功
+code-message[3200]=已发起企业认证，请等待管理员审核
+code-message[30000]=公司不存在
+
+code-message[40000]=该用户并未收藏任何职位
+code-message[45000]=该用户并未收藏该职位
+code-message[1500]=取消收藏成功
+code-message[1600]=职位收藏成功
+code-message[40010]=已经收藏过该职位，不可重复收藏
+
+code-message[2000]=职位下架成功
+code-message[2100]=职位发布成功，请等待管理员审核
+code-message[2200]=更新职位信息成功，请等待管理员审核
+code-message[4000]=更新职位状态成功
+code-message[4100]=更新职位浏览量成功
+code-message[41000]=职位不存在
+
+code-message[5000]=职位分类新增成功
+code-message[5100]=职位分类更新成功
+code-message[5200]=职位分类删除成功
+code-message[50000]=职位分类不存在
+code-message[51000]=没有任何职位分类
+
+code-message[60000]=请先完成企业认证
+
+code-message[6000]=添加观察者成功
+code-message[6100]=移除观察者成功
+
+code-message[7000]=简历投递成功
+code-message[7100]=更新申请状态成功
+code-message[7200]=撤销申请成功
+code-message[70000]=不存在该申请
+```
+
+#### 2023.4.21   v0.1.6
+
+> 修复SQL数据库,增加主键自增
+>
+> 修复无法注册的问题
+>
+> 修复表单无法插入的问题

@@ -13,9 +13,9 @@ spring:
   # 数据源配置，请修改为你项目的实际配置
   datasource:
     username: root
-    password: 123456
+    password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/recruit_system?useSSL=false&serverTimezone=UTC&characterEncoding=UTF8&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://localhost:3307/recruit_system?useSSL=false&serverTimezone=UTC&characterEncoding=UTF8&allowPublicKeyRetrieval=true
 
 
 # 开启权限拦截
