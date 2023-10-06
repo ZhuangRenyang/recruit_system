@@ -207,3 +207,16 @@ code-message[70000]=不存在该申请
 > 修复无法注册的问题
 >
 > 修复表单无法插入的问题
+
+#### 登录密码
+```
+INSERT INTO `user` VALUES (1, 'root', '超级管理员', NULL, 'admin@qq.com', '12312312312', '2021-03-14 14:49:21', '2022-11-08 16:30:43', NULL);
+INSERT INTO `user` VALUES (4, 'user', '刘同学', NULL, 'admin@qq.com', '12312312312', '2021-04-16 02:02:05', '2022-11-08 16:30:43', NULL);
+INSERT INTO `user` VALUES (5, 'user1', '李同学', NULL, 'admin@qq.com', '12312312312', '2021-04-16 02:02:33', '2022-11-08 16:30:43', NULL);
+INSERT INTO `user` VALUES (6, 'hr', '陈经理', NULL, 'admin@qq.com', '12312312312', '2021-04-16 02:02:48', '2022-11-08 16:30:43', NULL);
+INSERT INTO `user` VALUES (7, 'hr1', '郑经理', NULL, 'admin@qq.com', '12312312312', '2021-04-16 02:03:10', '2022-11-08 16:30:43', NULL);
+INSERT INTO `user` VALUES (8, 'admin', '平台管理员', NULL, 'admin@qq.com', '12312312312', '2021-04-16 02:03:27', '2022-11-08 16:30:43', NULL);
+INSERT INTO `user` VALUES (9, 'user2', '蓝同学', NULL, 'admin@qq.com', '12312312312', '2021-05-02 15:28:53', '2022-11-08 16:30:43', NULL);
+INSERT INTO `user` VALUES (13, 'sysadmin', '系统管理员', NULL, 'admin@qq.com', '12312312312', '2022-03-22 23:28:57', '2022-11-08 16:30:43', NULL);
+INSERT INTO `user` VALUES (17, 'eval', '张三', NULL, 'admin@qq.com', '12312312312', '2022-03-22 23:28:57', '2022-11-08 16:30:43', NULL);
+```
