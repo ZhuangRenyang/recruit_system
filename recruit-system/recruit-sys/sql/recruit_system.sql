@@ -17,6 +17,10 @@
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
+create database recruit_system;
+
+use recruit_system;
+
 -- ----------------------------
 -- Table structure for application
 -- ----------------------------
